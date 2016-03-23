@@ -1,0 +1,21 @@
+##
+# The Default Ignores by Bill
+# ===========================
+# We ignore about X types of files
+# or folders:
+#
+# - System hidden files
+# - Developer preference files
+# - Build artifacts
+##
+
+##
+# System & Editor Files
+##
+.DS_Store
+.sublime-project
+
+##
+# Environment preferences
+##
+.nvmrc
