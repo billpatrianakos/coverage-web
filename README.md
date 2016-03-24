@@ -12,9 +12,17 @@ Coverage helps you find the health insurance plan that's right for your needs an
 
 *Coverage requires Node.js > v5.4.1*
 
-1. Run `git clone https://github.com/billpatrianakos/coverage-web.git` to clone the repository or [download it as a zip file]()
+__If you are an official contributor to this repository:__
+
+1. Run `git clone https://github.com/billpatrianakos/coverage-web.git` to clone the repository or [download it as a zip file](https://github.com/billpatrianakos/coverage-web/archive/master.zip)
 2. `cd` into the project's root directory
 3. Install project dependencies with `npm install && bower install`
+
+__If you'd like to contribute__
+
+1. Fork this repository to your account using the Fork button
+2. Add this repository as an upstream with `git remote add upstream https://github.com/billpatrianakos/coverage-web.git`
+3. Clone your fork and switch to the `develop` branch using `git checkout -b develop && git pull upstream develop` to get the latest changes on the `develop` branch
 
 ## Run it locally
 
