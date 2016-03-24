@@ -19,3 +19,9 @@
 # Environment preferences
 ##
 .nvmrc
+
+##
+# Dependencies
+##
+node_modules/
+server/public/vendor/
