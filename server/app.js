@@ -7,7 +7,7 @@
 // Note: this was written on my iPhone, please excuse typos
 
 var express = require('express'),
-    app     = express().
+    app     = express();
     
 // Middleware
 // ----------
