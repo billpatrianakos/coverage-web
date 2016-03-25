@@ -10,7 +10,11 @@ Coverage helps you find the health insurance plan that's right for your needs an
 
 ## Setup
 
-*Coverage requires Node.js > v5.4.1*
+*Coverage requires Node.js > v5.4.1 and the following installed globally:*
+
+- Bower
+- Gulp
+- Run `npm install -g bower gulp-cli mocha`
 
 __If you are an official contributor to this repository:__
 
