@@ -1,0 +1,25 @@
+{
+  "name": "coverage-web",
+  "version": "0.0.1",
+  "description": "The Coverage web interface",
+  "main": "server/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billpatrianakos/coverage-web.git"
+  },
+  "author": "Bill Patrianakos <bill@billpatrianakos.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/billpatrianakos/coverage-web/issues"
+  },
+  "homepage": "https://github.com/billpatrianakos/coverage-web#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
