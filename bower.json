@@ -1,0 +1,33 @@
+{
+  "name": "coverage-web",
+  "description": "The Coverage web interface",
+  "main": "server/index.js",
+  "authors": [
+    "Bill Patrianakos <bill@billpatrianakos.me>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "health",
+    "insurance",
+    "web",
+    "interface"
+  ],
+  "homepage": "https://github.com/billpatrianakos/coverage-web",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "server/public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "es5-shim": "^4.5.7",
+    "jquery": "^2.2.2",
+    "html5shiv": "^3.7.3",
+    "normalize-css": "^4.0.0",
+    "respond": "^1.4.2"
+  }
+}
