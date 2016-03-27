@@ -29,4 +29,4 @@ server/public/vendor/
 ##
 # Configuration and secrets
 ##
-config.env.js
+ecosystem.json
