@@ -30,3 +30,9 @@ server/public/vendor/
 # Configuration and secrets
 ##
 ecosystem.json
+
+##
+# Development files
+##
+dev.sqlite3
+knexfile.js
