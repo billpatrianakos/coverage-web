@@ -1,0 +1,15 @@
+{
+  "strict": "global",
+  "esversion": 6,
+  "globals": {
+    "process": true,
+    "require": true,
+    "__dirname": true,
+    "console": true,
+    "module": true,
+    "exports": true,
+    "$": true,
+    "Pikaday": true,
+    "document": true
+  }
+}
