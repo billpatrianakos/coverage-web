@@ -22,7 +22,7 @@ let gulp    = require('gulp'),
 
 // Run a local server
 gulp.task('server', () => {
-  let server = gls('./server/app.js', {env: config});
+  let server = gls('./server/app.js', { env: config });
   server.start();
 
   // Reload the server on change
