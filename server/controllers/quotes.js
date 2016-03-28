@@ -12,7 +12,7 @@ QuotesController.route('/?')
   // -----------
   // Render quoting page
   .get(function(req, res, next) {
-    res.render('quotes/index', )
+    res.render('quotes/index', {});
   })
   // POST /quotes/
   // ------------

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   quotes: {
     index: {
@@ -5,4 +7,4 @@ module.exports = {
       description: 'Coverage quoting lets you find plans based on your family\'s unique situation'
     }
   }
-}
+};
