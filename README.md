@@ -44,3 +44,13 @@ We welcome contributions. [See the contributing file](CONTRIBUTING.md)
 ### Code Style
 
 Clean code is good code. Clean code is happy code. Style guide coming sooon...
+
+## License
+
+Coverage Web is licensed under the MIT License. You can [read the full license here](License) but the gist of it is this:
+
+- You may use this code for free
+- You may use this code for commercial or non-commercial purposes
+- You are not required to publish your changes to the code
+- You do no hold the author or contributors liable for anything
+- You must give credit to the original license in some form. I prefer a [link to my personal website](http://billpatrianakosme) but simply leaving my name in the license file will suffice
