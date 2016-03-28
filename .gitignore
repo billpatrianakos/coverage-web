@@ -34,5 +34,5 @@ ecosystem.json
 ##
 # Development files
 ##
-dev.sqlite3
+*.sqlite3
 knexfile.js
