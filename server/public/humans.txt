@@ -1,0 +1,16 @@
+/* TEAM */
+Author/Lead Developer: Bill Patrianakos
+Site: http://billpatrianakos.me
+Twitter: @billpatrianakos
+Location: Chicago, IL USA
+
+/* THANKS */
+GoHealth: For suing me and giving me this better, totally legal idea
+Ben Jackson: For going away and letting me work on the original idea
+Lisa: For supporting me when I go crazy and manic
+
+/* SITE */
+Last update: 2015/03/27 
+Standards: HTML5, CSS3, ES6
+Components: Respond.js, jQuery, React, es5-shim, html5-shiv, etc. (see vendor folder for more)
+Software: Sublime Text 3, Photoshop CC 14, OS X

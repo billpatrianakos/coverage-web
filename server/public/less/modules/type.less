@@ -1,0 +1,214 @@
+// Typographic Styles
+// ==================
+// Baseline typography styling
+
+// Scale and sizes
+@base-font-size: 18px;
+
+// Font families
+@body-font:     'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
+@headline-font: Georgia, 'Times New Roman', serif;
+
+html {
+  font-family: @body-font;
+  font-weight: normal;
+  font-size: @base-font-size;
+  // Make fonts look a little nicer in webkit
+  -webkit-font-smoothing: antialiased;
+}
+
+.centered-text { text-align: center; }
+
+/**
+ * Fractionless Type
+ *
+ * Base typography styles adapted
+ * from [Typebase](https://github.com/devinhunt/typebase.css/blob/master/src/typebase.less)
+ */
+
+// @base-font-size: 24;
+// @line-height: 1.5;
+// @leading: @line-height * 1rem;
+// @scale: 1.414;
+
+// // Font families
+// @sans-serif: 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, Arial, sans-serif;
+// @serif: Georgia, 'Times New Roman', serif;
+
+// html {
+//   font-family: @sans-serif;
+//   font-weight: 400;
+//   font-size: (@base-font-size / 16) * 100;
+//   // Make everything look a little nicer in webkit
+//   -webkit-font-smoothing: antialiased;
+//   // Activate if needed on mobile
+//   // -webkit-text-size-adjust: auto;
+//   // -moz-text-size-adjust: auto;
+//   // -ms-text-size-adjust: auto;
+//   // -o-text-size-adjust: auto;
+//   // text-size-adjust: auto;
+// }
+
+// // Copy & Lists
+// p {
+//   font-family: @sans-serif;
+//   font-weight: 400;
+//   line-height: @leading;
+//   margin-top: @leading;
+//   margin-bottom: 0;
+//   color: @body-color;
+
+//   &:first-child {
+//     margin-top: 0;
+//   }
+// }
+
+// ul, ol {
+//   margin-top: @leading;
+//   margin-bottom: @leading;
+//   font-size: 1rem;
+
+//   li {
+//     line-height: @leading;
+//     color: @body-color;
+//   }
+
+//   ul, ol {
+//     margin-top: 0;
+//     margin-bottom: 0;
+//   }
+// }
+
+// blockquote {
+//   line-height: @leading;
+//   margin-top: @leading;
+//   margin-bottom: @leading;
+// }
+
+// dl {
+//   dt, dd { &:extend(p); }
+//   dt { font-weight: 700; }
+
+//   &.faq {
+//     dt {
+//       .font-size(1 * @scale * 1rem);
+//       font-family: @serif !important;
+//     }
+
+//     dd {
+//       font-size: 1rem;
+//       margin-left: 0;
+//     }
+//   }
+// }
+
+// /* Headings */
+// h1, h2, h3, h4, h5, h6 {
+//   /* Change heading typefaces here */
+//   font-family: @serif;
+//   font-weight: 700;
+//   margin-top: @leading;
+//   margin-bottom: 0;
+//   line-height: @leading;
+//   color: @headline-color;
+
+//   &:first-child {
+//     margin-top: 0;
+//   }
+// }
+
+// h1, .h1 { font-size: 3 * @scale * 1rem; line-height: 3 * @leading; margin-top: 2 * @leading; }
+// h2, .h2 { font-size: 2 * @scale * 1rem; line-height: 2 * @leading; margin-top: 2 * @leading; }
+// h3, .h3 { font-size: 1 * @scale * 1rem; }
+// h4, .h4 { font-size: @scale / 1.5 * 1rem; }
+// h5, .h5 { font-size: @scale / 2.5 * 1rem; }
+// h6, .h6 { font-size: @scale / 3.5 * 1rem; }
+
+// /* Tables */
+// table {
+//   margin-top: @leading;
+//   border-spacing: 0;
+//   border-collapse: collapse;
+
+//   td, th {
+//     padding: 0;
+//     line-height: @line-height * @base-font-size - 0px;
+//   }
+// }
+
+// // Code blocks
+// code {
+//   // Forces text to constrain to the line-height. Not ideal, but works.
+//   vertical-align: bottom;
+// }
+
+// /* Leading paragraph text */
+// .lead {
+//   font-size: @scale * 1rem;
+//   line-height: @line-height;
+// }
+
+// /* Hug a the block above you */
+// .hug {
+//   margin-top: 0;
+// }
+
+// .light {
+//   font-weight: 300;
+// }
+
+// .slant {
+//   font-style: italic;
+// }
+
+// strong {
+//   font-weight: 700;
+
+//   em { font-style: italic; }
+// }
+
+// .lg {
+//   .font-size(1.2);
+// }
+
+// .sans-serif { font-family: @sans-serif; } // Useful for making headings sans-serif
+
+// .serif { font-family: @serif; } // For making non-headings serif
+
+// .centered-text {
+//   text-align: center;
+// }
+
+// a {
+//   color: @link-color;
+//   text-decoration: none;
+
+//   &:visited {
+//     color: @vlink-color;
+//   }
+
+//   &:hover {
+//     color: @hlink-color;
+//   }
+// }
+
+// // Type mixins
+
+// // Font Size
+// //
+// // Overrides an element's default font-size
+// // and sets the correct line-height as well.
+// //
+// // @size - Font size in rems
+// .font-size(@size) {
+//   font-size: @size * 1rem;
+//   line-height: @size * @scale * 1rem;
+// }
+
+// .font(@family: @sans-serif, @size: 1rem, @weight: 400, @style: normal) {
+//   font-family: @family;
+//   font-size: @size;
+//   font-weight: @weight;
+//   font-style: @style;
+//   line-height: @size * @scale * 1rem;
+// }

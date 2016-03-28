@@ -1,0 +1,264 @@
+/**
+ * Global mixins
+ *
+ * A general set of mixins for use in
+ * various other places. More specific sets
+ * should be put in their own file.
+ */
+
+// Center any element
+//
+// @display - Sets the element to block by default
+// @width - Default width is 100%
+//
+// Makes any element block level and centers it on screen.
+// Useful for centering elements within columns. Not to be
+// confused with text-align: center;
+.centered(@display: block, @width: 100%) {
+  display: @display;
+  width: @width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Full window background image
+//
+// This mixin allows you to fill the entire background
+// with an image regardless of the image or page size.
+//
+// @image - Relative path to image file to be used as the background.
+//
+// Originally used for full page background images, this
+// mixin can be used to fill large "container" elements
+// with a background image in the style of many hero banners.
+.fs-background(@image) {
+  background: url('@{image}') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+// Box shadow
+//
+// @x - Horizontal distance of shadow from center
+// @y - Vertical distance of shadow from center
+// @blur - How many pixels worth of blur to give shadow
+// @color - Color of the shadow. Use hex values. Use of Less color functions is acceptable.
+//
+// Gives an element a box shadow
+.box-shadow (@x: 0, @y: 0, @blur: 3px, @color: #272727) {
+  -o-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -ms-box-shadow: @arguments;
+  -khtml-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+// Inset shadow
+//
+// @inset - Flag telling function to use an inset shadow
+// @x - Horizontal distance of shadow from center
+// @y - Vertical distance of shadow from center
+// @blur - How many pixels worth of blur to give shadow
+// @color - Color of the shadow. Use hex values. Use of Less color functions is acceptable.
+//
+// Same as box shadow, except the shadows shows inside the element instead.
+// An alias to .box-shadow() without the need for a guard.
+.inset-shadow(@inset: inset, @x: 0, @y: 0, @blur: 3px, @color: #000) {
+  -o-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -ms-box-shadow: @arguments;
+  -khtml-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+
+// Text shadow
+.text-shadow(@x: 0, @y: 0, @blur: 1px, @color: #272727) {
+  -o-text-shadow: @arguments;
+  -moz-text-shadow: @arguments;
+  -ms-text-shadow: @arguments;
+  -khtml-text-shadow: @arguments;
+  -webkit-text-shadow: @arguments;
+  text-shadow: @arguments;
+}
+
+/*:::: Border radius mixins ::::*/
+.border-radius(@radius: 3px) {
+  -moz-border-radius: @arguments;
+  -o-border-radius: @arguments;
+  -ms-border-radius: @arguments;
+  -khtml-border-radius: @arguments;
+  -webkit-border-radius: @arguments;
+  border-radius: @arguments;
+}
+
+.top-borders(@radius: 3px) {
+  -moz-border-top-left-radius: @arguments;
+  -o-border-top-left-radius: @arguments;
+  -ms-border-top-left-radius: @arguments;
+  -khtml-border-top-left-radius: @arguments;
+  -webkit-border-top-left-radius: @arguments;
+  border-top-left-radius: @arguments;
+  -moz-border-top-right-radius: @arguments;
+  -o-border-top-right-radius: @arguments;
+  -ms-border-top-right-radius: @arguments;
+  -khtml-border-top-right-radius: @arguments;
+  -webkit-border-top-right-radius: @arguments;
+  border-top-right-radius: @arguments;
+}
+
+.bottom-borders(@radius: 3px) {
+  -moz-border-bottom-left-radius: @arguments;
+  -o-border-bottom-left-radius: @arguments;
+  -ms-border-bottom-left-radius: @arguments;
+  -khtml-border-bottom-left-radius: @arguments;
+  -webkit-border-bottom-left-radius: @arguments;
+  border-bottom-left-radius: @arguments;
+  -moz-border-bottom-right-radius: @arguments;
+  -o-border-bottom-right-radius: @arguments;
+  -ms-border-bottom-right-radius: @arguments;
+  -khtml-border-bottom-right-radius: @arguments;
+  -webkit-border-bottom-right-radius: @arguments;
+  border-bottom-right-radius: @arguments;
+}
+
+.left-borders(@radius: 3px) {
+  -moz-border-bottom-left-radius: @arguments;
+  -o-border-bottom-left-radius: @arguments;
+  -ms-border-bottom-left-radius: @arguments;
+  -khtml-border-bottom-left-radius: @arguments;
+  -webkit-border-bottom-left-radius: @arguments;
+  border-bottom-left-radius: @arguments;
+  -moz-border-top-left-radius: @arguments;
+  -o-border-top-left-radius: @arguments;
+  -ms-border-top-left-radius: @arguments;
+  -khtml-border-top-left-radius: @arguments;
+  -webkit-border-top-left-radius: @arguments;
+  border-top-left-radius: @arguments;
+}
+
+// Sets only the top-left and top-right border radius
+//
+// @radius - The border radius. Can be any valid CSS unit
+.right-borders(@radius: 6px) {
+  -moz-border-bottom-right-radius: @arguments;
+  -o-border-bottom-right-radius: @arguments;
+  -ms-border-bottom-right-radius: @arguments;
+  -khtml-border-bottom-right-radius: @arguments;
+  -webkit-border-bottom-right-radius: @arguments;
+  border-bottom-right-radius: @arguments;
+  -moz-border-top-right-radius: @arguments;
+  -o-border-top-right-radius: @arguments;
+  -ms-border-top-right-radius: @arguments;
+  -khtml-border-top-right-radius: @arguments;
+  -webkit-border-top-right-radius: @arguments;
+  border-top-right-radius: @arguments;
+}
+
+// Sets each corner's border radius to a unique value
+//
+// @top-left - Top left corner radius
+// @top-right - Top right corner radius
+// @bottom-left - Bottom left corner radius
+// @bottom-right - Bottom right corner radius
+//
+// This is a pretty heavy mixin. Use sparingly.
+.all-borders(@top-left, @top-right, @bottom-left, @bottom-right) {
+  -moz-border-bottom-right-radius: @bottom-right;
+  -o-border-bottom-right-radius: @bottom-right;
+  -ms-border-bottom-right-radius: @bottom-right;
+  -khtml-border-bottom-right-radius: @bottom-right;
+  -webkit-border-bottom-right-radius: @bottom-right;
+  border-bottom-right-radius: @bottom-right;
+  -moz-border-top-right-radius: @top-right;
+  -o-border-top-right-radius: @top-right;
+  -ms-border-top-right-radius: @top-right;
+  -khtml-border-top-right-radius: @top-right;
+  -webkit-border-top-right-radius: @top-right;
+  border-top-right-radius: @top-right;
+  -moz-border-bottom-left-radius: @bottom-left;
+  -o-border-bottom-left-radius: @bottom-left;
+  -ms-border-bottom-left-radius: @bottom-left;
+  -khtml-border-bottom-left-radius: @bottom-left;
+  -webkit-border-bottom-left-radius: @bottom-left;
+  border-bottom-left-radius: @bottom-left;
+  -moz-border-top-left-radius: @top-left;
+  -o-border-top-left-radius: @top-left;
+  -ms-border-top-left-radius: @top-left;
+  -khtml-border-top-left-radius: @top-left;
+  -webkit-border-top-left-radius: @top-left;
+  border-top-left-radius: @top-left;
+}
+
+/*:::: Transitions, transforms, gradients, and animation ::::*/
+.transition (@prop: all, @time: 1s, @ease: linear) {
+  -webkit-transition: @prop @time @ease;
+  -moz-transition: @prop @time @ease;
+  -o-transition: @prop @time @ease;
+  -ms-transition: @prop @time @ease;
+  transition: @prop @time @ease;
+}
+
+.transform (@rotate: 90deg, @scale: 1, @skew: 1deg, @translate: 10px) {
+  -webkit-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -moz-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -o-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  -ms-transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+  transform: rotate(@rotate) scale(@scale) skew(@skew) translate(@translate);
+}
+
+.gradient(@origin: left, @start: #ffffff, @stop: #000000) {
+  background-color: @start;
+  background-image: -webkit-linear-gradient(@origin, @start, @stop);
+  background-image: -moz-linear-gradient(@origin, @start, @stop);
+  background-image: -o-linear-gradient(@origin, @start, @stop);
+  background-image: -ms-linear-gradient(@origin, @start, @stop);
+  background-image: linear-gradient(@origin, @start, @stop);
+}
+
+// Set box-sizing property
+//
+// @sizing - The value of box-sizing. Defaults to border-box
+//
+// Useful for making elements use the border-box model where
+// paddings and margins do not affect the dimensions of the
+// element (i.e. are added to the inside rather than outside).
+.box-sizing(@sizing: border-box) {
+  -ms-box-sizing: @sizing;
+  -moz-box-sizing: @sizing;
+  -webkit-box-sizing: @sizing;
+  box-sizing: @sizing;
+}
+
+// Set element opacity
+//
+// @opacity - The amount of transparency to apply as a decimal where 0 is transparent and 1 is opaque
+//
+// Just a cross-browser compatible way to quickly set opacity.
+// Works in IE 9+ (IE 8 support needs testing)
+.opacity(@opacity: 0.5) {
+  -moz-opacity: @opacity;
+  -khtml-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  opacity: @opacity;
+  @opperc: @opacity * 100;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+  filter: ~"alpha(opacity=@{opperc})";
+}
+
+// RGBA Shortcut
+//
+// @color - The color to convert
+// @opacity - Sets the alpha (transparency) for the element
+//
+// A way to use RGBA with a fallback for browsers that do not
+// support it. This does not add RGBA support to older browsers.
+// This mixin only provides an easy way to set an RGBA fallback value.
+.rgba(@color: #272727, @opacity: 0.9) {
+  background: @color; // Fallback for when ALL else fails
+  background: rgba(red(@color), green(@color), blue(@color), @opacity);
+}

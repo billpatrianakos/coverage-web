@@ -1,0 +1,112 @@
+// Flex Grid
+// =========
+// Grid system using Flexbox
+
+// Grid Variables
+@max-width: 1140px;
+@min-width: 755px;
+@total-columns: 12;
+@gutter: 1.618%;
+
+// Flexbox compatibility mixins
+.display-flex() {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+.order(@order) {
+   -webkit-box-ordinal-group: @order;  /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-ordinal-group: @order;      /* OLD - Firefox 19- */
+  -ms-flex-order: @order;              /* TWEENER - IE 10 */
+  -webkit-order: @order;               /* NEW - Chrome */
+  order: @order;                       /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+.container,
+.row {
+  .box-sizing(border-box);
+}
+
+.container {
+  padding: 0 40px;
+}
+
+.row {
+  .display-flex;
+  flex-flow: row nowrap;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.row-loose {
+  &:extend(.row);
+  padding: 2.5em 0;
+  padding: 2.5rem 0;
+  .box-sizing(border-box);
+}
+
+.create-columns(@i) when (@i > 0) {
+  @column-width: (((@max-width * @i) / @total-columns) * 100) / @max-width;
+  @missing-width: (@gutter * ((@total-columns / @i) - 1)) / (@total-columns / @i);
+  @width: @column-width - @missing-width;
+
+  .row > .col-@{i}, 
+  .row-loose > .col-@{i},
+  .block-@{i} {
+    display: block;
+    position: relative;
+    flex: 0 0 @width;
+    margin-right: @gutter;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  // Custom column ordering
+  .row > .order-@{i},
+  .row-loose > .order-@{i} { .order(@i); }
+
+  // Push and pull classes
+  .push-@{i} {
+    left: @width + @gutter;
+  }
+
+  .pull-@{i} {
+    right: @width + @gutter;
+  }
+
+  .create-columns(@i - 1);
+}
+.create-columns(@total-columns);
+
+//:::: Helper Classes :::://
+
+// The micro clearfix hack (more of a technique than hack)
+// http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix() {
+  *zoom:1;
+  
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// A little help for responsive images
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}

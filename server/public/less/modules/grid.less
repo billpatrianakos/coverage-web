@@ -1,0 +1,114 @@
+/**
+ * Grid System
+ *
+ * TheFractionless grid is the Clever grid which is taken from [Sndicate](https://github.com/Sndicate/sndicate)
+ * which itself is lifted from the [Semantic Grid System](http://semantic.gs)
+ */
+
+// Grid Variables
+@max-width: 1140px;
+@min-width: 755px;
+@total-columns: 12;
+@gutter: 3%;
+
+
+// Containers divide pages into sections
+//
+// A container can contain multiple rows.
+// Useful for full-page backgrounds. Nesting
+// containers is not supported and is not a
+// good or useful idea anyway.
+.container {
+  padding: 0 20px;
+}
+
+// A single row contains twelve columns
+//
+// Use a row to split your page into horizontal
+// sections that contain one or more columns. The
+// `.form-row` variant is for use in forms and
+// makes clear what is being styled.
+.row, .form-row {
+  display: block;
+  width: 100%;
+  max-width: @max-width;
+  min-width: @min-width;
+  margin: 0 auto;
+  padding: 0.5rem 0; // Containers have padding so rows don't need them
+  overflow: hidden;
+  .clearfix;
+
+  &.no-pad {
+    padding: 0;
+  }
+}
+
+.row-loose {
+  &:extend(.row);
+  padding: 2.5rem 0;
+}
+
+// Column mixin
+//
+// Creates a block that is a percentage width
+// of the row it is contained in. The `.block-`
+// variants are for use in forms and help make
+// clear that they're for creating grids in forms.
+//
+// @columns - The number of columns one block spans
+// Defaults to full-page width.
+.create-columns(@i) when (@i > 0) {
+  @column-width: (((@max-width * @i) / @total-columns) * 100) / @max-width;
+  @missing-width: (@gutter * ((@total-columns / @i) - 1)) / (@total-columns / @i);
+  @width: @column-width - @missing-width;
+
+  .col-@{i}, .block-@{i} {
+    display: block;
+    position: relative;
+    float: left;
+    width: @width;
+    margin-right: @gutter;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  // Push and pull classes
+  .push-@{i} {
+    left: @width + @gutter;
+  }
+
+  .pull-@{i} {
+    right: @width + @gutter;
+  }
+
+  .create-columns(@i - 1);
+}
+.create-columns(@total-columns);
+
+//:::: Helper Classes :::://
+
+// The micro clearfix hack (more of a technique than hack)
+// http://nicolasgallagher.com/micro-clearfix-hack/
+.clearfix() {
+  *zoom:1;
+  
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// A little help for responsive images
+img, object, embed {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
