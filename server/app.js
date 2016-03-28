@@ -18,8 +18,9 @@ let express = require('express'),
 // App configuration
 // -----------------
 // Configure views and other settings
-app.set('hbs', exphbs(config.handlebars));
+app.engine('hbs', exphbs(config.handlebars));
 app.set('view engine', 'hbs');
+app.set('views', __dirname + '/views');
 
     
 // Middleware
