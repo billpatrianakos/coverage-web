@@ -10,14 +10,42 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 
 // Require dependencies
-let gulp    = require('gulp'),
-    gls     = require('gulp-live-server'),
-    fs      = require('fs'),
-    _       = require('lodash'),
-    config  = _.merge(require('./server/config/app').common, require('./server/config/app')[process.env.NODE_ENV]),
-    jshint  = require('gulp-jshint'),
-    stylish = require('jshint-stylish'),
-    less    = require('gulp-less');
+let gulp        = require('gulp'),
+    gls         = require('gulp-live-server'),
+    fs          = require('fs'),
+    _           = require('lodash'),
+    config      = _.merge(require('./server/config/app').common, require('./server/config/app')[process.env.NODE_ENV]),
+    jshint      = require('gulp-jshint'),
+    stylish     = require('jshint-stylish'),
+    less        = require('gulp-less'),
+    browserify  = require('browserify'),
+    uglify      = require('gulp-uglify'),
+    tap         = require('gulp-tap'),
+    buffer      = require('gulp-buffer'),
+    gutil       = require('gulp-util');
+
+
+// Bundle JS using Browserify
+gulp.task('browserify', () => {
+  browserify('./server/public/js/scripts.js')
+    .transform('babelify', {presets: ['es2015', 'react']})
+    .bundle()
+    .pipe(fs.createWriteStream('./server/public/js/scripts.min.js'));
+});
+
+
+// Compile all JSX files
+gulp.task('react', function() {
+  return gulp.src('./server/public/jsx/**/*.js', {read: false})
+    .pipe(tap(function(file) {
+      gutil.log('bundling ' + file.path);
+
+      file.contents = browserify(file.path).transform('babelify', {presets: ['es2015', 'react']}).bundle()
+    }))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest('./server/public/js/components'));
+});
 
 
 // Run a local server
@@ -52,9 +80,10 @@ gulp.task('less', function() {
 gulp.task('watch', function() {
   gulp.watch(['./server/{config,controllers,models,middleware}/**/*.js'], ['jshint']);
   gulp.watch(['./server/public/less/**/*.less'], ['less']);
-  // gulp.watch(['./server/public/js/**/*.js', '!./server/public/vendor/**/*.js'], ['bundle'])
+  gulp.watch(['./server/public/js/**/*.js', '!./server/public/vendor/**/*.js'], ['browserify']);
+  gulp.watch(['./server/public/jsx/*.js'], ['react']);
 });
 
 
 // Default task
-gulp.task('default', ['server', 'watch']);
+gulp.task('default', ['watch', 'server']);
