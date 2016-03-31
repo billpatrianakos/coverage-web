@@ -16,6 +16,9 @@
   background: #D07025;
   color: #f7f7f7;
 }
+.hidden {
+  display: none;
+}
 /*! normalize.css v4.0.0 | MIT License | github.com/necolas/normalize.css */
 
 /**
@@ -880,21 +883,208 @@ embed {
 img {
   height: auto;
 }
-html {
-  font-family: 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
-  font-weight: normal;
-  font-size: 18px;
-  -webkit-font-smoothing: antialiased;
-}
-.centered-text {
-  text-align: center;
-}
 /**
  * Fractionless Type
  *
  * Base typography styles adapted
  * from [Typebase](https://github.com/devinhunt/typebase.css/blob/master/src/typebase.less)
  */
+html {
+  font-family: 'freight-sans-pro', 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 150;
+  -webkit-font-smoothing: antialiased;
+}
+p,
+dl dt,
+dl dd {
+  font-family: 'freight-sans-pro', 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
+  font-weight: 400;
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  color: #505050;
+}
+p:first-child {
+  margin-top: 0;
+}
+ul,
+ol {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+ul li,
+ol li {
+  line-height: 1.5rem;
+  color: #505050;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+blockquote {
+  line-height: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+dl dt {
+  font-weight: 700;
+}
+dl.faq dt {
+  font-size: 1.414rem;
+  line-height: 1.999396rem;
+  font-family: Georgia, 'Times New Roman', serif !important;
+}
+dl.faq dd {
+  font-size: 1rem;
+  margin-left: 0;
+}
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* Change heading typefaces here */
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  line-height: 1.5rem;
+  color: #272727;
+}
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child {
+  margin-top: 0;
+}
+h1,
+.h1 {
+  font-size: 4.242rem;
+  line-height: 4.5rem;
+  margin-top: 3rem;
+}
+h2,
+.h2 {
+  font-size: 2.828rem;
+  line-height: 3rem;
+  margin-top: 3rem;
+}
+h3,
+.h3 {
+  font-size: 1.414rem;
+}
+h4,
+.h4 {
+  font-size: 0.94266667rem;
+}
+h5,
+.h5 {
+  font-size: 0.5656rem;
+}
+h6,
+.h6 {
+  font-size: 0.404rem;
+}
+/* Tables */
+table {
+  margin-top: 1.5rem;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  padding: 0;
+  line-height: 36px;
+}
+code {
+  vertical-align: bottom;
+}
+/* Leading paragraph text */
+.lead {
+  font-size: 1.414rem;
+  line-height: 1.5;
+}
+/* Hug a the block above you */
+.hug {
+  margin-top: 0;
+}
+.light {
+  font-weight: 300;
+}
+.slant {
+  font-style: italic;
+}
+strong {
+  font-weight: 700;
+}
+strong em {
+  font-style: italic;
+}
+.lg {
+  font-size: 1.2rem;
+  line-height: 1.6968rem;
+}
+.sans-serif {
+  font-family: 'freight-sans-pro', 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
+}
+.serif {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.centered-text {
+  text-align: center;
+}
+a {
+  color: #D07025;
+  text-decoration: none;
+}
+a:visited {
+  color: #D07025;
+}
+a:hover {
+  color: #ba6421;
+}
+body > header {
+  background: #342E9C;
+  border-bottom: 4px solid #272275;
+}
+body > header .logo {
+  margin-top: 0.25em;
+  margin-top: 0.25rem;
+}
+body > header nav ul {
+  list-style: none;
+  float: right;
+}
+body > header nav ul li {
+  display: inline-block;
+  margin-right: 1em;
+  margin-right: 1rem;
+}
+body > header nav ul li:last-child {
+  margin-right: 0;
+}
+body > header nav ul li a,
+body > header nav ul li a:visited {
+  color: #fff;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+body > header nav ul li a:hover,
+body > header nav ul li a:visited:hover {
+  color: #20CF69;
+}
 /*:::: Smaller screens ::::*/
 .mobile-show {
   display: none;

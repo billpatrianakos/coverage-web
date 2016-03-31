@@ -1,0 +1,33 @@
+body > header {
+  background: @purple;
+  border-bottom: 4px solid darken(@purple, 10%);
+
+  .logo {
+    margin-top: 0.25em;
+    margin-top: 0.25rem;
+  }
+
+  nav {
+    ul {
+      list-style: none;
+      float: right;
+
+      li {
+        display: inline-block;
+        margin-right: 1em;
+        margin-right: 1rem;
+
+        &:last-child { margin-right: 0; }
+
+        a, a:visited {
+          color: #fff;
+          .transition(all, 0.3s, ease-in-out);
+
+          &:hover {
+            color: @green;
+          }
+        }
+      }
+    }
+  }
+}

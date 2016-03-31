@@ -12,6 +12,8 @@
 ::selection { background: @orange; color: @white; }
 ::moz-selection { background: @orange; color: @white; }
 
+.hidden { display: none; }
+
 // Baseline styles
 // ===============
 @import (inline) '../vendor/normalize-css/normalize.css';
@@ -25,6 +27,7 @@
 // ========
 // Import site modules and page-specific
 // overrides here.
+@import 'partials/header';
 
 // Mobile styles
 // =============
