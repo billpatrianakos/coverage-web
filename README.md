@@ -13,15 +13,11 @@ Coverage helps you find the health insurance plan that's right for your needs an
 *Coverage requires Node.js > v5.4.1 and the following installed globally:*
 
 - Bower
-- Gulp
+- Gulp (local package and CLI)
 - PM2
-- Run `npm install -g bower gulp-cli mocha pm2 browserify`
-
-__If you are an official contributor to this repository:__
-
-1. Run `git clone https://github.com/billpatrianakos/coverage-web.git` to clone the repository or [download it as a zip file](https://github.com/billpatrianakos/coverage-web/archive/master.zip)
-2. `cd` into the project's root directory
-3. Install project dependencies with `npm install && bower install`
+- Mocha
+- Browserify
+- Run `npm install -g bower gulp-cli mocha pm2 browserify` to install all global dependencies at once
 
 __If you'd like to contribute__
 
