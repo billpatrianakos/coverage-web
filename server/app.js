@@ -26,6 +26,10 @@ app.set('views', __dirname + '/views');
 // Middleware
 // ----------
 // Insert, configure, update middleware
+if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
+  // DEVELOPMENT/TEST MIDDLEWARE
+  app.use(express.static(__dirname + '/public'));
+}
 
 
 // Routes
