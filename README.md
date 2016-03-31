@@ -15,7 +15,7 @@ Coverage helps you find the health insurance plan that's right for your needs an
 - Bower
 - Gulp
 - PM2
-- Run `npm install -g bower gulp-cli mocha pm2`
+- Run `npm install -g bower gulp-cli mocha pm2 browserify`
 
 __If you are an official contributor to this repository:__
 
