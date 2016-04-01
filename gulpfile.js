@@ -78,7 +78,7 @@ gulp.task('less', function() {
 
 // Watch for changes and run defined tasks
 gulp.task('watch', function() {
-  gulp.watch(['./server/{config,controllers,models,middleware}/**/*.js'], ['jshint']);
+  gulp.watch(['./server/{config,controllers,models,middleware}/**/*.js', './test/**/*.js'], ['jshint']);
   gulp.watch(['./server/public/less/**/*.less'], ['less']);
   gulp.watch(['./server/public/js/**/*.js', '!./server/public/vendor/**/*.js'], ['browserify']);
   gulp.watch(['./server/public/jsx/*.js'], ['react']);
