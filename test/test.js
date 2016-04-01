@@ -25,9 +25,17 @@ describe('Loading app server', function() {
     server.close(done);
   });
 
+  // Test homepage requests
   it('responds to \'/\' with a 404 error', function(done) {
     request(server)
       .get('/')
+      .expect(404, done);
+  });
+
+  // Ensure non-existent pages return 404s
+  it('responds with a 404 error on any missing page', function(done) {
+    request(server)
+      .get('/whatever')
       .expect(404, done);
   });
 });
