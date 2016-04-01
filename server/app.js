@@ -44,3 +44,7 @@ require('./controllers')(app);
 let server = app.listen(process.env.PORT, () => {
   console.log('Started app on localhost:' + server.address().port);
 });
+
+// Exporting the server as a module
+// allows for easier testing
+module.exports = server;
