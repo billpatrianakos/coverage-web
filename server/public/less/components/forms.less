@@ -1,0 +1,39 @@
+// Forms
+// =====
+// Styling for all forms
+
+.form-sidebar {
+  .box-sizing(border-box);
+  padding: 1em;
+  padding: 1rem;
+  background: @white;
+  border: 1px solid darken(@white, 10%);
+
+  h3 {
+    margin-bottom: 1em;
+    margin-bottom: 1rem;
+  }
+
+  label, .label {
+    display: block;
+    margin-bottom: 1em;
+    margin-bottom: 1rem;
+    cursor: pointer;
+
+    input[type="text"] {
+      width: 100%;
+    }
+  }
+
+  .checkbox-holder {
+    label {
+      display: inline;
+
+      input[type="radio"],
+      input[type="checkbox"] {
+        margin-right: 1em;
+        margin-right: 1rem;
+      }
+    }
+  }
+}

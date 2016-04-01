@@ -11,8 +11,6 @@
 @scale: 1.414;
 
 // Font families
-@body-font: 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, Arial, sans-serif;
-@serif: Georgia, 'Times New Roman', serif;
 @body-font:     'freight-sans-pro', 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
 @headline-font: 'freight-text-pro', Georgia, 'Times New Roman', serif;
 
@@ -73,7 +71,7 @@ dl {
   &.faq {
     dt {
       .font-size(1 * @scale * 1rem);
-      font-family: @serif !important;
+      font-family: @headline-font !important;
     }
 
     dd {
@@ -86,7 +84,7 @@ dl {
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   /* Change heading typefaces here */
-  font-family: @serif;
+  font-family: @headline-font;
   font-weight: 700;
   margin-top: @leading;
   margin-bottom: 0;
@@ -152,9 +150,9 @@ strong {
   .font-size(1.2);
 }
 
-.sans-serif { font-family: @body-font; } // Useful for making headings sans-serif
+.sans { font-family: @body-font; } // Useful for making headings sans-serif
 
-.serif { font-family: @serif; } // For making non-headings serif
+.serif { font-family: @headline-font; } // For making non-headings serif
 
 .centered-text {
   text-align: center;

@@ -1,0 +1,22 @@
+// Buttons
+// =======
+// Button styling
+
+.btn,
+.btn:visited {
+  background: @purple;
+  color: @white;
+  .border-radius(2px);
+  border: 1px solid darken(@purple, 10%);
+  padding: 1em 2em;
+  padding: 1rem 2rem;
+  display: inline-block;
+  .transition(all, 0.3s, ease-in-out);
+
+  &:hover {
+    color: @purple;
+    background: @white;
+    border: 1px solid @purple;
+    .transition(all, 0.3s, ease-in-out);
+  }
+}

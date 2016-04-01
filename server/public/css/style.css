@@ -937,7 +937,7 @@ dl dt {
 dl.faq dt {
   font-size: 1.414rem;
   line-height: 1.999396rem;
-  font-family: Georgia, 'Times New Roman', serif !important;
+  font-family: 'freight-text-pro', Georgia, 'Times New Roman', serif !important;
 }
 dl.faq dd {
   font-size: 1rem;
@@ -951,7 +951,7 @@ h4,
 h5,
 h6 {
   /* Change heading typefaces here */
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'freight-text-pro', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   margin-top: 1.5rem;
   margin-bottom: 0;
@@ -1033,11 +1033,11 @@ strong em {
   font-size: 1.2rem;
   line-height: 1.6968rem;
 }
-.sans-serif {
+.sans {
   font-family: 'freight-sans-pro', 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
 }
 .serif {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'freight-text-pro', Georgia, 'Times New Roman', serif;
 }
 .centered-text {
   text-align: center;
@@ -1084,6 +1084,70 @@ body > header nav ul li a:visited {
 body > header nav ul li a:hover,
 body > header nav ul li a:visited:hover {
   color: #20CF69;
+}
+.form-sidebar {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1em;
+  padding: 1rem;
+  background: #f7f7f7;
+  border: 1px solid #dedede;
+}
+.form-sidebar h3 {
+  margin-bottom: 1em;
+  margin-bottom: 1rem;
+}
+.form-sidebar label,
+.form-sidebar .label {
+  display: block;
+  margin-bottom: 1em;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+.form-sidebar label input[type="text"],
+.form-sidebar .label input[type="text"] {
+  width: 100%;
+}
+.form-sidebar .checkbox-holder label {
+  display: inline;
+}
+.form-sidebar .checkbox-holder label input[type="radio"],
+.form-sidebar .checkbox-holder label input[type="checkbox"] {
+  margin-right: 1em;
+  margin-right: 1rem;
+}
+.btn,
+.btn:visited {
+  background: #342E9C;
+  color: #f7f7f7;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid #272275;
+  padding: 1em 2em;
+  padding: 1rem 2rem;
+  display: inline-block;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover,
+.btn:visited:hover {
+  color: #342E9C;
+  background: #f7f7f7;
+  border: 1px solid #342E9C;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 /*:::: Smaller screens ::::*/
 .mobile-show {
