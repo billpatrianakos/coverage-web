@@ -9,8 +9,19 @@ var React     = require('react'),
 var QuotingContainer = React.createClass({
   getInitialState: function() {
     return {
-      plans: []
+      plans: [],
+      demographics: {}
     };
+  },
+  updateDemographics: function(event) {
+    var state = this.state;
+    if (event.target.name === 'tobacco_use') {
+      this.state.demographics.tobacco_use = Boolean(+event.target.value);
+    } else {
+      this.state.demographics[event.target.name] = event.target.value;
+    }
+    this.setState(state);
+    console.log(this.state);
   },
   render: function() {
     return (
@@ -20,13 +31,33 @@ var QuotingContainer = React.createClass({
             <div className="form-sidebar">
               <h3 className="sans">Tell us about yourself</h3>
               <form method="post" action="/quotes/">
-                <label><input type="text" name="zip_code" placeholder="Zip code" /></label>
-                <label><input type="text" name="age" placeholder="Your age" /></label>
-                <label><input type="text" name="household_income" placeholder="Household income" /></label>
+                <label><input type="text" 
+                              name="zip_code" 
+                              placeholder="Zip code" 
+                              onChange={this.updateDemographics} />
+                </label>
+                <label><input type="text" 
+                              name="age" 
+                              placeholder="Your age" 
+                              onChange={this.updateDemographics} />
+                </label>
+                <label><input type="text" 
+                              name="household_income" 
+                              placeholder="Household income" 
+                              onChange={this.updateDemographics} />
+                </label>
                 <div className="checkbox-holder">
                   <span className="label">Do you smoke?</span>
-                  <label className="inline">No <input type="radio" name="tobacco_use" value="0" /></label>
-                  <label className="inline">Yes <input type="radio" name="tobacco_use" value="1" /></label>
+                  <label className="inline">No <input type="radio" 
+                                                      name="tobacco_use" 
+                                                      value="0"
+                                                      onChange={this.updateDemographics} />
+                  </label>
+                  <label className="inline">Yes <input  type="radio" 
+                                                        name="tobacco_use" 
+                                                        value="1"
+                                                        onChange={this.updateDemographics} />
+                  </label>
                 </div>
                 <a href="#" className="btn add-dependents">Add Dependents</a>
               </form>
