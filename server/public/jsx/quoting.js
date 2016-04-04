@@ -28,7 +28,7 @@ var QuotingContainer = React.createClass({
                   <label className="inline">No <input type="radio" name="tobacco_use" value="0" /></label>
                   <label className="inline">Yes <input type="radio" name="tobacco_use" value="1" /></label>
                 </div>
-                <a href="#" className="btn">Add Dependents</a>
+                <a href="#" className="btn add-dependents">Add Dependents</a>
               </form>
             </div>
           </div>

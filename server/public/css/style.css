@@ -1149,6 +1149,17 @@ body > header nav ul li a:visited:hover {
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
+.btn.add-dependents,
+.btn:visited.add-dependents {
+  margin-top: 1em;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
 /*:::: Smaller screens ::::*/
 .mobile-show {
   display: none;
