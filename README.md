@@ -38,7 +38,7 @@ This one command will do the following:
 - Watch all JS, LESS, and most other important files and directories for changes
 - The watch tasks will transpile LESS to CSS, JSX to regular JavaScript, lint your scripts, package your scripts using Browserify, and more. 
 
-Now visit `http://localhost:3000` and you'll see... a 404 error. Thats because Coverage does not come with a homepage. There are routes set up for every controller file in the app (like /quotes, /login, /signup, etc.). The Coverage philosophy is to provide you the APIs and functionality you need to run the app and its up to you to implement any marketing or landing pages. 
+Now visit `http://localhost:3000` and you'll see... a 404 error. Thats because Coverage does not come with a homepage. There are routes set up for every controller file in the app (like `/quotes`, `/login`, `/signup`, etc.). The Coverage philosophy is to provide you the APIs and functionality you need to run the app and its up to you to implement any marketing or landing pages. We're giving you an insurance quote engine and leaving the customization up to you.
 
 ## Deploying
 
@@ -58,7 +58,7 @@ More about our branching strategy can be found in the Contributing file.
 
 ### Code Style
 
-Clean code is good code. Clean code is happy code. Style guide coming sooon...
+Clean code is good code. Clean code is happy code. [More on code style in `CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## License
 
@@ -74,3 +74,5 @@ Coverage Web is licensed under the MIT License. You can [read the full license h
 ### Disclaimer
 
 Coverage works by making requests to an external API to get quotes and subsidy data. In order to run quotes you must either build your own quoting API or sign up for [Q, the quoting API](https://q.aploquote.com/docs). The data used to generate quotes is available for download for free from [Data.Healthcare.gov](http://data.healthcare.gov) and the formula for estimating insurance subsidies is also freely available by doing a quick Google search. Coverage has been built from the ground up and does not use code from any other project besides the open source libraries it depends on. __Remember: all data output from this software is 100% free and public knowledge! If you can download the Healthcare.gov data sets then you can make your own insurance plan finder.__
+
+__To get API credentials__ open up a new issue on this repository and I'll set you up with a set of credentials. Remember, this is only if you choose to use my [Q API](https://q.aplqouote.com/docs). You're free to [download the required data sets for free from the federal government](https://data.healthcare.gov) and run your own quoting API.
