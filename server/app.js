@@ -38,6 +38,30 @@ if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
 require('./controllers')(app);
 
 
+// 404 Handler
+// -----------
+// Handle all 404 errors. Do not define any
+// routes below this (except 500 error middleware)
+app.use(function(req, res, next) {
+  if (req.xhr)
+    res.status(404).json({status: 'error', message: 'The URL and/or request method used did not match any valid URLs.'});
+  else
+    res.status(404).render('404', {error: 'Page not found'});
+});
+
+
+// Error handler
+// -------------
+// Handles all application errors and responds
+// appropriately based on the type of request.
+app.use(function(err, req, res, next) {
+  if (req.xhr)
+    res.status(500).json({status: 'error', message: 'The following internal server error was encountered: ' + err});
+  else
+    res.status(500).render('500', {error: err});
+});
+
+
 // Start server
 // ------------
 // Start the server
