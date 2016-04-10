@@ -30,7 +30,15 @@ Once all global packages have been installed just run `npm install` to install a
 
 Make sure you've installed all dependencies before proceeding. 
 
+To start a local development server run `gulp`
 
+This one command will do the following:
+
+- Start the application server locally
+- Watch all JS, LESS, and most other important files and directories for changes
+- The watch tasks will transpile LESS to CSS, JSX to regular JavaScript, lint your scripts, package your scripts using Browserify, and more. 
+
+Now visit `http://localhost:3000` and you'll see... a 404 error. Thats because Coverage does not come with a homepage. There are routes set up for every controller file in the app (like /quotes, /login, /signup, etc.). The Coverage philosophy is to provide you the APIs and functionality you need to run the app and its up to you to implement any marketing or landing pages. 
 
 ## Deploying
 
