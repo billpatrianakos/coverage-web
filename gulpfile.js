@@ -22,7 +22,8 @@ let gulp        = require('gulp'),
     uglify      = require('gulp-uglify'),
     tap         = require('gulp-tap'),
     buffer      = require('gulp-buffer'),
-    gutil       = require('gulp-util');
+    gutil       = require('gulp-util'),
+    todo        = require('gulp-todo');
 
 
 // Bundle JS using Browserify
@@ -78,10 +79,16 @@ gulp.task('less', function() {
 
 // Watch for changes and run defined tasks
 gulp.task('watch', function() {
-  gulp.watch(['./server/{config,controllers,models,middleware}/**/*.js', './test/**/*.js'], ['jshint']);
+  gulp.watch(['./server/{config,controllers,models,middleware}/**/*.js', './server/app.js', './test/**/*.js'], ['jshint']);
   gulp.watch(['./server/public/less/**/*.less'], ['less']);
   gulp.watch(['./server/public/js/**/*.js', '!./server/public/vendor/**/*.js'], ['browserify']);
   gulp.watch(['./server/public/jsx/*.js'], ['react']);
+});
+
+
+// Warn about TODOs and FIXMEs in our code
+gulp.task('todo', function() {
+  // TODO: Finish this task
 });
 
 
