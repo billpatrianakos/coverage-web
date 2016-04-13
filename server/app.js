@@ -12,7 +12,8 @@ let express = require('express'),
     exphbs  = require('express-handlebars'),
     app     = express(),
     _       = require('lodash'),
-    config  = _.merge(require(__dirname + '/config/app').common, require(__dirname + '/config/app')[process.env.NODE_ENV]);
+    config  = _.merge(require(__dirname + '/config/app').common, require(__dirname + '/config/app')[process.env.NODE_ENV]),
+    morgan  = require('morgan');
 
 
 // App configuration
@@ -29,6 +30,10 @@ app.set('views', __dirname + '/views');
 if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
   // DEVELOPMENT/TEST MIDDLEWARE
   app.use(express.static(__dirname + '/public'));
+  app.use(morgan('combined'));
+} else {
+  // PRODUCTION MIDDLEWARE
+  app.use(morgan('combined', { skip: function(req, res) { return res.statusCode < 400; } }));
 }
 
 
