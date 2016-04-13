@@ -36,3 +36,8 @@ ecosystem.json
 ##
 *.sqlite3
 knexfile.js
+
+##
+# Log files
+##
+server/*.log

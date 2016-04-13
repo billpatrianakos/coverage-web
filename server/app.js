@@ -33,7 +33,10 @@ if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
   app.use(morgan('combined'));
 } else {
   // PRODUCTION MIDDLEWARE
-  app.use(morgan('combined', { skip: function(req, res) { return res.statusCode < 400; } }));
+  app.use(morgan('combined', {
+    skip: function(req, res) { return res.statusCode < 400; } ,
+    stream: fs.createWriteStream(__dirname + '/error.log', {flags: 'a'})
+  }));
 }
 
 
