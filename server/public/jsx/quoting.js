@@ -1,5 +1,6 @@
 var React     = require('react'),
-    ReactDom  = require('react-dom');
+    ReactDom  = require('react-dom'),
+    request   = require('superagent');
 
 
 // QuotingContainer
@@ -23,6 +24,16 @@ var QuotingContainer = React.createClass({
     this.setState(state);
     console.log(this.state);
   },
+  getQuotes: function(e) {
+    e.preventDefault();
+    var self = this;
+
+    request.get('/quotes/')
+      .end(function(err, res) {
+        var state = self.state;
+        console.log(res.body);
+      });
+  },
   render: function() {
     return (
       <div className="container">
@@ -30,7 +41,7 @@ var QuotingContainer = React.createClass({
           <div className="col-3">
             <div className="form-sidebar">
               <h3 className="sans">Tell us about yourself</h3>
-              <form method="post" action="/quotes/">
+              <form method="post" action="/quotes/" onSubmit={this.getQuotes}>
                 <label><input type="text" 
                               name="zip_code" 
                               placeholder="Zip code" 
@@ -60,6 +71,7 @@ var QuotingContainer = React.createClass({
                   </label>
                 </div>
                 <a href="#" className="btn add-dependents">Add Dependents</a>
+                <button type="submit">Get Quotes</button>
               </form>
             </div>
           </div>
