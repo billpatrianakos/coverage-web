@@ -5,7 +5,8 @@
 'use strict';
 
 let express           = require('express'),
-    QuotesController  = express.Router();
+    QuotesController  = express.Router(),
+    q                 = require('qclient');
 
 QuotesController.route('/?')
   // GET /quotes/
