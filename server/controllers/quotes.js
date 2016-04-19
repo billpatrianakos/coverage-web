@@ -6,7 +6,7 @@
 
 let express           = require('express'),
     QuotesController  = express.Router(),
-    q                 = require('qclient');
+    q                 = require('q-client');
 
 QuotesController.route('/?')
   // GET /quotes/
