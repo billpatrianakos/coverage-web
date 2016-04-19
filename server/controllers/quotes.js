@@ -6,7 +6,10 @@
 
 let express           = require('express'),
     QuotesController  = express.Router(),
-    q                 = require('q-client');
+    QClient           = require('q-client'),
+    quotes            = new QClient(process.env.QClientID, process.env.QClientSecret);
+
+    console.log(process.env.QClientID, process.env.QClientSecret);
 
 QuotesController.route('/?')
   // GET /quotes/
@@ -19,7 +22,11 @@ QuotesController.route('/?')
   // ------------
   // Gets quotes
   .post(function(req, res, next) {
-    res.json({status: 'Got quotes'});
+    quotes.getSubsidy('none', req.body.zip_code, req.body, function(err, results) {
+      if (err) return next(new Error(err));
+      console.log(results);
+      res.send(results);
+    });
   });
 
 module.exports = QuotesController;
