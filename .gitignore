@@ -30,6 +30,7 @@ server/public/vendor/
 # Configuration and secrets
 ##
 ecosystem.json
+envvars.sh
 
 ##
 # Development files
