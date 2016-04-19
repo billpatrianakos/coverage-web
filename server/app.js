@@ -8,12 +8,13 @@
 
 'use strict'
 
-let express = require('express'),
-    exphbs  = require('express-handlebars'),
-    app     = express(),
-    _       = require('lodash'),
-    config  = _.merge(require(__dirname + '/config/app').common, require(__dirname + '/config/app')[process.env.NODE_ENV]),
-    morgan  = require('morgan');
+let express     = require('express'),
+    exphbs      = require('express-handlebars'),
+    app         = express(),
+    _           = require('lodash'),
+    config      = _.merge(require(__dirname + '/config/app').common, require(__dirname + '/config/app')[process.env.NODE_ENV]),
+    morgan      = require('morgan'),
+    bodyParser  = require('body-parser');
 
 
 // App configuration
@@ -38,6 +39,7 @@ if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
     stream: fs.createWriteStream(__dirname + '/error.log', {flags: 'a'})
   }));
 }
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 // Routes
