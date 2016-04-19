@@ -1,3 +1,8 @@
+// Quoting
+// =======
+// React components responsible for
+// getting quotes from form input.
+
 var React     = require('react'),
     ReactDom  = require('react-dom'),
     request   = require('superagent');
@@ -28,10 +33,15 @@ var QuotingContainer = React.createClass({
     e.preventDefault();
     var self = this;
 
-    request.get('/quotes/')
+    request.post('/quotes/')
+      .send(self.state.demographics)
       .end(function(err, res) {
-        var state = self.state;
-        console.log(res.body);
+        if (err) {
+          console.log(err)
+        } else {
+          var state = self.state;
+          console.log(res);
+        }
       });
   },
   render: function() {
@@ -111,7 +121,7 @@ var InstructionComponent = React.createClass({
       </div>
     );
   }
-})
+});
 
 
 ReactDom.render(React.createElement(QuotingContainer), document.getElementById('quoting-component'));
