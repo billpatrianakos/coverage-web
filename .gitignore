@@ -42,3 +42,8 @@ knexfile.js
 # Log files
 ##
 server/*.log
+
+##
+# Build artifacts
+##
+TODO.md
