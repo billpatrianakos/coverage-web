@@ -1153,12 +1153,39 @@ body > header nav ul li a:visited:hover {
 .btn:visited.add-dependents {
   margin-top: 1em;
   margin-top: 1rem;
-  width: 100%;
+  width: 48%;
   text-align: center;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  padding: 0.5em;
+  margin-right: 2%;
+}
+.btn.add-dependents:last-child,
+.btn:visited.add-dependents:last-child {
+  margin-right: 0;
+}
+.plan-box {
+  display: block;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1em;
+  padding: 1rem;
+  border: 1px solid #dedede;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  background: #f7f7f7;
+  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 /*:::: Smaller screens ::::*/
 .mobile-show {

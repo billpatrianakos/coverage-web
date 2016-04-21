@@ -5,7 +5,8 @@
 
 var React     = require('react'),
     ReactDom  = require('react-dom'),
-    request   = require('superagent');
+    request   = require('superagent'),
+    _         = require('lodash');
 
 
 // QuotingContainer
@@ -16,7 +17,9 @@ var QuotingContainer = React.createClass({
   getInitialState: function() {
     return {
       plans: [],
-      demographics: {}
+      subsidy: null,
+      demographics: {},
+      spouse: false
     };
   },
   updateDemographics: function(event) {
@@ -29,6 +32,24 @@ var QuotingContainer = React.createClass({
     this.setState(state);
     console.log(this.state);
   },
+  addSpouse: function(e) {
+    e.preventDefault();
+    var state = this.state;
+    state.spouse = true;
+    this.setState(state);
+  },
+  updateSpouseAge: function(e) {
+    var state = this.state;
+    state.demographics.spouse = {};
+    state.demographics.spouse.age = e.target.value;
+    this.setState(state);
+  },
+  updateSpouseTobacco: function(e) {
+    var state = this.state;
+    var smoker = +e.target.value ? true : false;
+    this.state.demographics.spouse.tobacco_use = smoker;
+    this.setState(state);
+  },
   getQuotes: function(e) {
     e.preventDefault();
     var self = this;
@@ -36,11 +57,14 @@ var QuotingContainer = React.createClass({
     request.post('/quotes/')
       .send(self.state.demographics)
       .end(function(err, res) {
-        if (err) {
-          console.log(err)
+        if (err || res.body.status !== 'ok') {
+          console.log(err); // TODO: Handle this error properly
         } else {
           var state = self.state;
-          console.log(res);
+          console.log(res); // TODO: Remove all console.log statements
+          state.plans   = res.body.quotes;
+          state.subsidy = res.body.subsidy;
+          self.setState(state);
         }
       });
   },
@@ -49,6 +73,7 @@ var QuotingContainer = React.createClass({
       <div className="container">
         <div className="row-loose">
           <div className="col-3">
+            {_.isNull(this.state.subsidy) ? null : <SubsidyDisplay subsidy={this.state.subsidy} />}
             <div className="form-sidebar">
               <h3 className="sans">Tell us about yourself</h3>
               <form method="post" action="/quotes/" onSubmit={this.getQuotes}>
@@ -80,12 +105,16 @@ var QuotingContainer = React.createClass({
                                                         onChange={this.updateDemographics} />
                   </label>
                 </div>
-                <a href="#" className="btn add-dependents">Add Dependents</a>
+
+                {this.state.spouse ? <label><input type="text" placeholder="Spouse's age" onChange={this.updateSpouse} /></label> : null}
+                {this.state.spouse ? <div className="checkbox-holder"><span className="label">Does your spouse smoke?</span><label className="inline">No <input type="radio" name="tobacco_use" value="0" onChange={this.updateSpouseTobacco} /></label><label className="inline">Yes <input  type="radio" name="tobacco_use" value="1" onChange={this.updateSpouseTobacco} /></label></div> : null}
+                {this.state.spouse ? null : <a href="#" onClick={this.addSpouse} className="btn add-dependents">Add Spouse</a> }
+                <a href="#" className="btn add-dependents">Add Dependent</a>
                 <button type="submit">Get Quotes</button>
               </form>
             </div>
           </div>
-          <QuoteResults results={this.state.plans} />
+          {this.state.plans.length > 0 ? <QuoteResults results={this.state.plans} subsidy={this.state.subsidy} /> : <InstructionComponent />}
         </div>
       </div>
     );
@@ -101,12 +130,62 @@ var QuotingContainer = React.createClass({
 var QuoteResults = React.createClass({
   render: function() {
     return (
-      <div>
-        {this.props.results.length > 0 ? <div>Hello</div> : <InstructionComponent />}
+      <div className="col-8">
+        {
+          this.props.results.map(function(plan, i) {
+            return <PlanInfo planData={plan} subsidy={this.props.subsidy} key={i} />
+          }.bind(this))
+        }
       </div>
     );
   }
 });
+
+
+// PlanInfo
+// --------
+// Displays a plan info component
+// that shows all information about a plan
+var PlanInfo = React.createClass({
+  calculateSubsidizedPremium: function(premium) {
+    var subsidizedPremium = premium - this.props.subsidy;
+    subsidizedPremium = subsidizedPremium >= 0 ? subsidizedPremium : 0;
+
+    var savings = premium - subsidizedPremium;
+    return [subsidizedPremium.toFixed(2), savings.toFixed(2)];
+  },
+  render: function() {
+    var premiumInfo = this.calculateSubsidizedPremium(this.props.planData.premium);
+    return (
+      <div className="plan-box">
+        <header>
+          <h2 className="sans h3"><span className={'metal-level-' + this.props.planData.metal_level}></span> {this.props.planData.plan_name} ({this.props.planData.plan_type})</h2>
+          <h3 className="hug sans h4">You pay ${premiumInfo[0]} (<span className="savings">You save ${premiumInfo[1]}</span>)</h3>
+        </header>
+        <div className="body">
+          <p>
+            <strong>Deductible:</strong> ${this.props.planData.deductible}
+          </p>
+        </div>
+      </div>
+    );
+  }
+});
+
+
+// SubsidyDisplay
+// --------------
+// Displays subsidy information
+var SubsidyDisplay = React.createClass({
+  render: function() {
+    return (
+      <div className="form-sidebar">
+        <p><em>You are eligible for a subsidy of:</em></p>
+        <h4 className="subsidy-amount">${this.props.subsidy.toFixed(2)}</h4>
+      </div>
+    );
+  }
+})
 
 
 // InstructionComponent
