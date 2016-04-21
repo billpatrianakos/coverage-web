@@ -24,8 +24,7 @@ QuotesController.route('/?')
   .post(function(req, res, next) {
     quotes.getSubsidy('none', req.body.zip_code, req.body, function(err, results) {
       if (err) return next(new Error(err));
-      console.log(results);
-      res.send(results);
+      res.json(JSON.parse(results));
     });
   });
 
