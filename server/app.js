@@ -40,6 +40,7 @@ if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
   }));
 }
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 
 // Routes
