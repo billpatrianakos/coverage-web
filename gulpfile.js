@@ -88,7 +88,9 @@ gulp.task('watch', function() {
 
 // Warn about TODOs and FIXMEs in our code
 gulp.task('todo', function() {
-  // TODO: Finish this task
+  gulp.src(['./gulpfile.js', './server/{config,controllers,models,middleware,lib}/**/*'])
+    .pipe(todo())
+    .pipe(gulp.dest('./'));
 });
 
 
