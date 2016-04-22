@@ -68,6 +68,9 @@ var QuotingContainer = React.createClass({
         }
       });
   },
+  addDependent: function() {
+    // this function should add another dependent form to the quote form
+  },
   render: function() {
     return (
       <div className="container">
@@ -106,11 +109,31 @@ var QuotingContainer = React.createClass({
                   </label>
                 </div>
 
-                {this.state.spouse ? <label><input type="text" placeholder="Spouse's age" onChange={this.updateSpouse} /></label> : null}
-                {this.state.spouse ? <div className="checkbox-holder"><span className="label">Does your spouse smoke?</span><label className="inline">No <input type="radio" name="tobacco_use" value="0" onChange={this.updateSpouseTobacco} /></label><label className="inline">Yes <input  type="radio" name="tobacco_use" value="1" onChange={this.updateSpouseTobacco} /></label></div> : null}
+                {this.state.spouse ? 
+                  <label>
+                    <input  type="text" 
+                            placeholder="Spouse's age" 
+                            onChange={this.updateSpouse} />
+                  </label> : null}
+                {this.state.spouse ? 
+                  <div className="checkbox-holder">
+                    <span className="label">Does your spouse smoke?</span>
+                    <label className="inline">
+                      No <input type="radio" 
+                                name="tobacco_use" 
+                                value="0" 
+                                onChange={this.updateSpouseTobacco} />
+                    </label>
+                    <label className="inline">
+                      Yes <input  type="radio" 
+                                  name="tobacco_use" 
+                                  value="1" 
+                                  onChange={this.updateSpouseTobacco} />
+                    </label>
+                  </div> : null}
                 {this.state.spouse ? null : <a href="#" onClick={this.addSpouse} className="btn add-dependents">Add Spouse</a> }
-                <a href="#" className="btn add-dependents">Add Dependent</a>
-                <button type="submit">Get Quotes</button>
+                <a href="#" className="btn add-dependents" onClick={addDependent}>Add Dependent</a>
+                <button className="quote-button" type="submit">Get Quotes</button>
               </form>
             </div>
           </div>
@@ -196,7 +219,10 @@ var InstructionComponent = React.createClass({
   render: function() {
     return (
       <div className="col-8">
-        Follow the instructions to get quotes
+        <div className="instruction-box">
+          <h2 className="sans">Find your best health insurance option!</h2>
+          <h3 className="sans hug h4">Just enter some basic information about yourself in the form on this page to view quotes</h3>
+        </div>
       </div>
     );
   }
