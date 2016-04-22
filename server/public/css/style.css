@@ -1090,8 +1090,8 @@ body > header nav ul li a:visited:hover {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 1em;
-  padding: 1rem;
+  padding: 1.5em;
+  padding: 1.5rem;
   background: #f7f7f7;
   border: 1px solid #dedede;
 }
@@ -1153,7 +1153,7 @@ body > header nav ul li a:visited:hover {
 .btn:visited.add-dependents {
   margin-top: 1em;
   margin-top: 1rem;
-  width: 48%;
+  width: 49%;
   text-align: center;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1162,11 +1162,31 @@ body > header nav ul li a:visited:hover {
   display: inline-block;
   float: left;
   padding: 0.5em;
-  margin-right: 2%;
+  margin-right: 1%;
+  margin-bottom: 1em;
+  margin-bottom: 1rem;
+  font-size: 0.8em;
+  font-size: 0.8rem;
 }
 .btn.add-dependents:last-child,
 .btn:visited.add-dependents:last-child {
   margin-right: 0;
+}
+button {
+  font-family: 'freight-sans-pro', 'Helvetica Neue', Helvetica, 'Lucida Grande', Verdana, sans-serif;
+  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
+  background: #342E9C;
+  border: 1px solid #272275;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #f7f7f7;
+}
+button.quote-button {
+  display: block;
+  width: 100%;
 }
 .plan-box {
   display: block;
