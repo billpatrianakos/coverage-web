@@ -36,7 +36,7 @@ if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
   // PRODUCTION MIDDLEWARE
   app.use(morgan('combined', {
     skip: function(req, res) { return res.statusCode < 400; } ,
-    stream: fs.createWriteStream(__dirname + '/error.log', {flags: 'a'})
+    stream: fs.createWriteStream(__dirname + '/server/error.log', {flags: 'a'})
   }));
 }
 app.use(bodyParser.urlencoded({ extended: true }));
