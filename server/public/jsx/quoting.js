@@ -19,7 +19,8 @@ var QuotingContainer = React.createClass({
       plans: [],
       subsidy: null,
       demographics: {},
-      spouse: false
+      spouse: false,
+      children: false
     };
   },
   updateDemographics: function(event) {
@@ -68,8 +69,19 @@ var QuotingContainer = React.createClass({
         }
       });
   },
-  addDependent: function() {
-    // this function should add another dependent form to the quote form
+  addDependent: function(e) {
+    e.preventDefault();
+    var state = this.state;
+    state.children = state.children ? state.children++ : 0;
+    this.setState(state);
+    console.log('addDependent ran');
+  },
+  updateChildAge: function(age, index) {
+    var state = this.state;
+    this.state.dependents || {};
+    this.state.dependents.children[+index] = {age: age};
+    this.setState(state);
+    console.log('updateChildAge ran');
   },
   render: function() {
     return (
@@ -132,7 +144,8 @@ var QuotingContainer = React.createClass({
                     </label>
                   </div> : null}
                 {this.state.spouse ? null : <a href="#" onClick={this.addSpouse} className="btn add-dependents">Add Spouse</a> }
-                <a href="#" className="btn add-dependents" onClick={addDependent}>Add Dependent</a>
+                {this.state.children || this.state.children === 0 ? <DependentForm children={this.state.children} setChild={this.updateChildAge} /> : null}
+                <a href="#" className="btn add-dependents" onClick={this.addDependent}>Add Dependent</a>
                 <button className="quote-button" type="submit">Get Quotes</button>
               </form>
             </div>
@@ -206,6 +219,47 @@ var SubsidyDisplay = React.createClass({
         <p><em>You are eligible for a subsidy of:</em></p>
         <h4 className="subsidy-amount">${this.props.subsidy.toFixed(2)}</h4>
       </div>
+    );
+  }
+});
+
+
+// DependentForm
+// -------------
+// Renders a list of child/dependent forms
+var DependentForm = React.createClass({
+  updateChildAge: function(age) {
+    var children = this.props.children;
+    // this.props.updateChild();
+    this.props.setChild(+age);
+    console.log('updateChildAge on DepForm ran');
+  },
+  render: function() {
+    var map   = Array.prototype.map,
+        self  = this;
+
+    var dependentForms = map.call(self.props.children, function(val) {
+      return <Dependent val={val} key={val} updateChild={this.updateChildAge} />
+    });
+
+    return {dependentForms};
+  }
+});
+
+
+// Dependent
+// ---------
+// Form for a single dependent
+var Dependent = React.createClass({
+  updateChildAge: function(e) {
+    this.props.updateChildAge(e.target.value);
+  },
+  render: function() {
+    return (
+      <label>
+        Child #{this.props.val}<br />
+        <input name="age" type="number" placeholder="How old is your dependent/child?" onChange={this.updateChildAge} key={val} />
+      </label>
     );
   }
 })
