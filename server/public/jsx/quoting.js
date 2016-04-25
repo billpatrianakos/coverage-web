@@ -239,7 +239,7 @@ var DependentForm = React.createClass({
         self  = this;
 
     var dependentForms = map.call(self.props.children, function(val) {
-      return <Dependent val={val} key={val} updateChild={this.updateChildAge} />
+      return <Dependent val={val} key={val} updateChild={self.updateChildAge} />
     });
 
     return {dependentForms};
