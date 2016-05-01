@@ -4,7 +4,7 @@
 # 2. Rename this file to simply 'envvars.sh'
 # 3. Run `source envvars.sh` before running gulp
 # Troubleshooting: Be sure the file is executable by running `chmod +x envvars.sh` on it before use
-export QClientID=CHANGE_TO_YOUR_CLIENT_IF
+export QClientID=CHANGE_TO_YOUR_CLIENT_ID
 export QClientSecret=CHANGE_TO_YOUR_CLIENT_SECRET
 
 echo "Set environment vars"

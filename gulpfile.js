@@ -26,6 +26,24 @@ let gulp        = require('gulp'),
     todo        = require('gulp-todo');
 
 
+// We'll use this to source our development
+// shell scripts
+const exec  = require('child_process').exec;
+
+
+// Set environment variables before gulp starts
+gulp.task('setvars', function() {
+  exec('source ./envvars.sh', function(err, stdout, stderr) {
+    if (err) {
+      console.log(err);
+      return
+    } else {
+      console.log(stdout);
+    }
+  });
+});
+
+
 // Bundle JS using Browserify
 gulp.task('browserify', () => {
   browserify('./server/public/js/scripts.js')
@@ -95,4 +113,4 @@ gulp.task('todo', function() {
 
 
 // Default task
-gulp.task('default', ['watch', 'server']);
+gulp.task('default', ['setvars', 'watch', 'server']);
