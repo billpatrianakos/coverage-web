@@ -20,9 +20,13 @@ var QuotingContainer = React.createClass({
       subsidy: null,
       demographics: {},
       spouse: false,
-      children: false
+      children: []
     };
   },
+  // QuotingContainer#updateDemographics
+  // -----------------------------------
+  // Updates each property of the demographics 
+  // object `onChange`. The demo
   updateDemographics: function(event) {
     var state = this.state;
     if (event.target.name === 'tobacco_use') {
@@ -144,7 +148,7 @@ var QuotingContainer = React.createClass({
                     </label>
                   </div> : null}
                 {this.state.spouse ? null : <a href="#" onClick={this.addSpouse} className="btn add-dependents">Add Spouse</a> }
-                {this.state.children || this.state.children === 0 ? <DependentForm children={this.state.children} setChild={this.updateChildAge} /> : null}
+                {this.state.children ? <DependentForm children={this.state.children} setChild={this.updateChildAge} /> : null}
                 <a href="#" className="btn add-dependents" onClick={this.addDependent}>Add Dependent</a>
                 <button className="quote-button" type="submit">Get Quotes</button>
               </form>
@@ -153,6 +157,33 @@ var QuotingContainer = React.createClass({
           {this.state.plans.length > 0 ? <QuoteResults results={this.state.plans} subsidy={this.state.subsidy} /> : <InstructionComponent />}
         </div>
       </div>
+    );
+  }
+});
+
+
+// DependentForm
+// -------------
+// Render a dependent form
+var DependentForm = React.createClass({
+  render: function() {
+    var dependentForms = [];
+    while (var i = 0; i <= this.props.children; i++) {
+      dependentForms.push(<Dependent number={i} key={i} />);
+    }
+
+    return {dependentForms}
+  }
+});
+
+
+// Dependents
+// ----------
+// Render a single dependent form
+var Dependent = React.createClass({
+  render: function() {
+    return (
+      <div>Hello {this.props.number}</div>
     );
   }
 });
@@ -222,47 +253,6 @@ var SubsidyDisplay = React.createClass({
     );
   }
 });
-
-
-// DependentForm
-// -------------
-// Renders a list of child/dependent forms
-var DependentForm = React.createClass({
-  updateChildAge: function(age) {
-    var children = this.props.children;
-    // this.props.updateChild();
-    this.props.setChild(+age);
-    console.log('updateChildAge on DepForm ran');
-  },
-  render: function() {
-    var map   = Array.prototype.map,
-        self  = this;
-
-    var dependentForms = map.call(self.props.children, function(val) {
-      return <Dependent val={val} key={val} updateChild={self.updateChildAge} />
-    });
-
-    return {dependentForms};
-  }
-});
-
-
-// Dependent
-// ---------
-// Form for a single dependent
-var Dependent = React.createClass({
-  updateChildAge: function(e) {
-    this.props.updateChildAge(e.target.value);
-  },
-  render: function() {
-    return (
-      <label>
-        Child #{this.props.val}<br />
-        <input name="age" type="number" placeholder="How old is your dependent/child?" onChange={this.updateChildAge} key={val} />
-      </label>
-    );
-  }
-})
 
 
 // InstructionComponent

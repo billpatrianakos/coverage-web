@@ -13,7 +13,7 @@ let express           = require('express'),
 
 QuotesController.route('/?')
   // GET /quotes/
-  // -----------
+  // ------------
   // Render quoting page
   .get(function(req, res, next) {
     res.render('quotes/index', {});
