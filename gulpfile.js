@@ -30,7 +30,6 @@ let gulp        = require('gulp'),
 // shell scripts
 const exec  = require('child_process').exec;
 
-
 // Set environment variables before gulp starts
 gulp.task('setvars', function() {
   exec('source ./envvars.sh', function(err, stdout, stderr) {
