@@ -2,15 +2,30 @@
 
 In order to contribute there are two rules:
 
-1. Always create your own branch to work in. Your branch __must be__ cut from the `develop` branch.
-2. Clean code is good code so follow the code style guide.
+1. Always create your own branch to work in. __Your branch must be cut from the `develop` branch.__
+2. Clean code is good code so __follow the code style guide__.
 
-If you can follow those two rules then the process of contributing code looks like this:
+If you're a seasoned git/GitHub veteran then most of this will be familiar to you. These directions are very explicit because I want to encourage new GitHub users and new developers to contribute to this project.
 
-1. Fork this project
-2. Make your changes but __switch to the `develop` branch first!__
-3. Go to your fork and press the green Pull Request button
-4. Set up the request so that the changes you made in your fork will be merged into our `develop` branch
+## Submitting pull requests for new features and bug fixes
+
+If you can follow the two rules we set above then the process of contributing code looks like the following.
+
+### Forking and making edits
+
+1. Fork the project and clone it to your local machine (`git clone https://github.com/__*YOUR_USERNAME*__/coverage-web.git`)
+2. Add this repository as a remote (`git remote add upstream https://github.com/billpatrianakos/coverage-web.git`)
+3. Checkout the `develop` branch by executing `git fetch && git checkout -b upstream/develop`
+4. Now cut a branch off of `develop` and then do your work in there. (For example: `git checkout -b dev-myGithubUsername`)
+5. You should make all of your changes in your own private branch (see step 4 above for an example of how to cut your own branch off of `develop`)
+
+### Submitting the pull request
+
+Once your work is ready to be merged into the main project you'll simply submit a pull request from `your-remote/dev-yourBranch` to `upstream/develop`. Here's how to do this:
+
+1. Visit your repository on GitHub and press the green "New Pull Request" button
+2. In the first dropdown select `Base:your-unique-branch` in the first box and `compare:develop` in the second box
+3. From there just follow the on screen guide to make your pull request. Easy!
 
 ## Branching
 
