@@ -1,5 +1,8 @@
 #!/bin/sh
 
+##
+# Usage
+##
 # 1. Enter in your own QClientID and QClientSecret here
 # 2. Rename this file to simply 'envvars.sh'
 # 3. Run `source envvars.sh` before running gulp
