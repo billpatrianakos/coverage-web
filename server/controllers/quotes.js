@@ -23,8 +23,10 @@ QuotesController.route('/?')
   // Gets quotes
   .post(function(req, res, next) {
     quotes.getSubsidy('none', req.body.zip_code, req.body, function(err, results) {
-      if (err) return next(new Error(err));
-      res.json(JSON.parse(results));
+      if (err)
+        res.json({status: 'error', message: 'There was an error fetching quotes', details: err});
+      else
+        res.json(JSON.parse(results));
     });
   });
 
