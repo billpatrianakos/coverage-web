@@ -14,7 +14,10 @@ let express     = require('express'),
     _           = require('lodash'),
     config      = _.merge(require(__dirname + '/config/app').common, require(__dirname + '/config/app')[process.env.NODE_ENV]),
     morgan      = require('morgan'),
-    bodyParser  = require('body-parser');
+    bodyParser  = require('body-parser'),
+    csrf        = require('csurf'),
+    session     = require('express-session'),
+    RedisStore  = process.env.NODE_ENV === 'production' ? require('connect-redis')(session) : null;
 
 
 // App configuration
@@ -27,20 +30,23 @@ app.set('views', __dirname + '/views');
     
 // Middleware
 // ----------
-// Insert, configure, update middleware
+// Insert + configure middleware based on environment
 if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
   // DEVELOPMENT/TEST MIDDLEWARE
-  app.use(express.static(__dirname + '/public'));
-  app.use(morgan('combined'));
+  app.use(express.static(__dirname + '/public'));     // Serve static files in dev mode only
+  app.use(morgan('combined'));                        // Log all requests to console in development
 } else {
   // PRODUCTION MIDDLEWARE
-  app.use(morgan('combined', {
+  app.set('trust proxy', 1);                          // Trust proxy since we're in prod
+  app.use(morgan('combined', {                        // Log *only errors* -- *to a file* -- in production
     skip: function(req, res) { return res.statusCode < 400; } ,
     stream: fs.createWriteStream(__dirname + '/server/error.log', {flags: 'a'})
   }));
 }
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(session(config.sessions));                    // Configures sessions for current environment automatically
+app.use(csrf());                                      // Handle CSRF generation and checking
+app.use(bodyParser.urlencoded({ extended: true }));   // Parse post bodies as rich/deep JS objects
+app.use(bodyParser.json());                           // Accept and parse JSON request bodies
 
 
 // Routes
