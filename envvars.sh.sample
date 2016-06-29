@@ -1,15 +1,32 @@
 #!/bin/sh
-
-##
+# Environment Variable Configuration
+# ==================================
+# This file is responsible for setting the Coverage app's
+# secret settings as environment variables
+#
 # Usage
-##
-# 1. Enter in your own QClientID and QClientSecret here
-# 2. Rename this file to simply 'envvars.sh'
-# 3. Run `source envvars.sh` before running gulp
-# Troubleshooting: Be sure the file is executable by running `chmod +x envvars.sh` on it before use
+# -----
+# 1. Enter in your own QClientID and QClientSecret if you intent to use the Q API
+# 2. Customize the rest of the variable values (yes, even the session secret)
+# 3. Rename this file to simply 'envvars.sh'
+# 4. Run 'source envvars.sh` before running gulp
+# Troubleshooting: Be sure the file is executable by running `chmod +x envvars.sh` on it before use,
+#                  Don't run the file! `source` it instead. Only `source`ing will set the envvars.
+
+# Q API credentials
 export QClientID=CHANGE_TO_YOUR_CLIENT_ID
 export QClientSecret=CHANGE_TO_YOUR_CLIENT_SECRET
+
+# General private settings
+export SESSION_SECRET=aQL2wBaJDVRqJaVXWBV5bexyFlr1DaqjldhAJ6cX9V2edzE2wESF9bMDhU9s3LaovFDYk7b85ZVzEutukKbYc9CeMS3xFgPvyMWuOgilIiqdLaus5rq4kfPo1mqpv5vEgLuhXrFSNfi7snGZvkcdmJlisn2xCgWIBJNhhyRG7hIQWUy7wdkA7llLc9GFJSkWParmQn2Zv0y9MuEajOcIMDsiGlBUtBBAjYHz6p7NO1UIfljvap3B9PhAR1gs14jB
+
+# Redis config
+export REDIS_HOST=localhost
+export REDIS_PORT=6379
 
 echo "Set environment vars"
 echo $QClientID
 echo $QClientSecret
+echo $SESSION_SECRET
+echo $REDIS_HOST
+echo $REDIS_PORT

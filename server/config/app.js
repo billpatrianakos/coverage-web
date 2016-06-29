@@ -8,6 +8,9 @@
 
 'use strict';
 
+let session     = require('express-session'),
+    RedisStore  = require('connect-redis')(session);
+
 module.exports = {
   common: {
     handlebars: {
@@ -16,16 +19,30 @@ module.exports = {
       extname:        '.hbs',
       layoutsDir:     __dirname + '/../views/layouts',
       partialsDir:    __dirname + '/../views/partials'
+    },
+    sessions: {
+      secret:             process.env.SESSION_SECRET,
+      name:               'coverage.sid',
+      resave:             false,
+      saveUninitialized:  false,
+      unset:              'destroy'
     }
   },
   development: {
-    PORT: 9000
+    PORT: 9000,
+    sessions: {
+      cookie: { secure: false }
+    }
   },
   test: {},
   production: {
-    // Do not fill this in.
-    // Use PM2 to set your environment
-    // variables instead. This object is left
-    // here just to call this to your attention.
+    sessions: {
+      store: new RedisStore({
+        host: process.env.REDIS_HOST,
+        port: process.env.REDIS_PORT,        
+        ttl:  7200000 // 2 hours
+      }),
+      cookie: { secure: true }
+    }
   }
 };

@@ -28,7 +28,7 @@ let gulp        = require('gulp'),
 
 // We'll use this to source our development
 // shell scripts
-const exec  = require('child_process').exec;
+const exec = require('child_process').exec;
 
 // Set environment variables before gulp starts
 gulp.task('setvars', function() {
