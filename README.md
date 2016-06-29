@@ -2,28 +2,20 @@
 
 > The official web client for Coverage
 
-Coverage is an open source health insurance coverage finder. Just answer a few simple questions and Coverage will return a list of health insurance plans available in your area along with how much of a government (Obamacare) subsidy you're eligible to receive to help pay your premiums each month.
-
-## Why open source this?
-
-Insurance companies get rich by making insurance confusing. Most people end up choosing plans they don't understand, that don't cover the doctors they want to go to, have high premiums *and* out-of-pocket costs and just plain suck.
-
-Meanwhile insurance agents get charged huge sums of money for insurance quote engines that are ugly, buggy, and display publicly available data for a fee. 
-
-Coverage helps people find the health insurance plan that's right for their needs and budget, putting health care above profits. Coverage is completely free and open source software for use by both consumers and businesses alike. I don't make a dime off of this although anyone who uses this can if they wanted to. Open sourcing this is just the right thing to do.
+Coverage is an open source health insurance coverage finder. Just answer a few simple questions and Coverage will return a list of health insurance plans available in your area along with how much of a government subsidy you're eligible to receive to help pay your premiums each month.
 
 ## Setup
 
-*Coverage requires Node.js > v5.4.1 and the following installed globally:*
+*Coverage requires Node.js >= v5.4.1 and the following installed globally:*
 
 - Bower
-- Gulp (local package and CLI)
+- Gulp
 - PM2
 - Mocha
 - Browserify
 - Run `npm install -g bower gulp-cli mocha pm2 browserify` to install all global dependencies at once
 
-Once all global packages have been installed just run `npm install && bower install` to install all required dependencies. 
+Once all global packages have been installed run `npm install && bower install` to install all required dependencies. 
 
 ## Run it locally
 
