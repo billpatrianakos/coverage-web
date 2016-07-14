@@ -17,7 +17,7 @@ Once you've forked or cloned the project, setup is easy. Follow the steps below 
 - Browserify
 
 Once all global packages have been installed run `npm install && bower install` to install all required dependencies. 
-=======
+
 ### Installing all dependencies
 
 1. Run `npm install -g bower gulp-cli mocha pm2 browserify` to install all global dependencies at once.
@@ -30,8 +30,7 @@ Coverage gets all of it's important runtime configuration options in the environ
 1. Copy `envvars.sh.sample` to `envvars.sh` (you *__must__* name it this exact name as our `.gitignore` file is set up to ignore it so your secret API keys don't get leaked all over GitHub)
 2. Edit `envvars.sh` in your favorite text editor. Change all of the variable values that apply to your situation
 
-In production you should use a solution like PM2 to set your environment configs. The `envvars.sh` file is reserved for development and testing use only.
->>>>>>> origin/develop
+In production you should use a solution like PM2 to set your environment variables. The `envvars.sh` file is reserved for development and testing use only.
 
 ## Run it locally
 
@@ -40,7 +39,7 @@ Make sure you've installed all dependencies before proceeding.
 1. Set environment variables with `source envvars.sh`. You only need to source the `envvars.sh` file once per terminal session. It only needs to be run in the terminal window/tab that will be running the local web server and *only in development and test environments*
 2. Start a local development server by simply running `gulp`. The `gulp` command will invoke the default Gulp task and do the following:
 
-- Try to set environment variables (currently not working so we `source envvars.sh` first for now)
+- Try to set environment variables (currently a bug prevents this from working so we `source envvars.sh` first for now)
 - Watch all JS, LESS, and most other important files and directories for changes
   - The watch tasks will transpile LESS to CSS, JSX (React) to regular JavaScript, lint your scripts, package your scripts using Browserify, and more
 - Start a local development server
@@ -49,7 +48,7 @@ Now visit [`http://localhost:9000`](http://localhost:9000) and you'll see... a 4
 
 ## Deploying
 
-We recommend Nginx proxied to a Node app monitored by [PM2](https://github.com/Unitech/pm2). More deployment instructions and advice coming soon...
+We recommend Nginx proxied to the Express app monitored by [PM2](https://github.com/Unitech/pm2). More deployment instructions and advice coming soon...
 
 ## Getting access to the Quoting API
 
@@ -57,13 +56,13 @@ Coverage is pretty useless without access to an external API that'll return insu
 
 ### Method 1: Using the Q API
 
-The data used to generate quote results is hosted at [the official Q website](http://q.aploquote.com/docs). You must have a client ID and a secret key to call the official Q (Q is for Quotes API). To get these credentials please open an issue or directly email me for access or more information.
+The data used to generate quote results is hosted at [the official Q website](http://q.aplo.me/docs). __You must have a client ID and a secret key to call the official Q API__. To get these credentials please open an issue or directly email me for access or more information.
 
 ### Method 2: Roll your own data API
 
-__Alternatively__ you can host the data yourself and connect Coverage Web to your own insurance plan API. The data sets are 100%, completely free, open source, and maintained by the Federal Government at [Data.HealthCare.gov](http://data.healthcare.gov). Here is a [direct link to the data required to run your own insurance quoting API](https://data.healthcare.gov/browse?limitTo=datasets&utf8=✓). *Hint: You're looking for 7 QHP data files. Convert/export/download those into CSV files and import them into your database of choice then build an API around it. Yeah, I know, easier said than done but if you want to be totally self-sufficient you can use this data.
+__Alternatively__ you can host the data yourself and connect Coverage Web to your own insurance plan API. The data sets are 100%, completely free, open source, and maintained by the Federal Government at [Data.HealthCare.gov](http://data.healthcare.gov). Here is a [direct link to the data required to run your own insurance quoting API](https://data.healthcare.gov/browse?limitTo=datasets&utf8=✓). *Hint: You're looking for *7 QHP data files*. Convert/export/download those into CSV files and import them into your database of choice then build an API around it. Yeah, I know, easier said than done but if you want to be totally self-sufficient you can use this data.
 
-If you go this route you'll just need to make sure that the data input/output is consistent with how Q accepts and returns data. You can find all of this by reading [the Q docs](http://q.aploquote.com/docs)
+If you go this route you'll just need to make sure that the data input/output is consistent with how Q accepts and returns data. You can find all of this by reading [the Q docs](http://q.aplo.me/docs)
 
 
 ## Tips, tricks, and advice
@@ -72,15 +71,15 @@ __Remember__, Coverage is only an API *client*. It needs to query for plan resul
 
 __If you use the Q API__
 
-We use a similar authentication scheme as AWS. We give you a client ID and secret. Your requests to Q should be signed using your secret token. Instructions and details are available on the [Q documentation site](http://q.aploquote.com/docs).
+We use a similar authentication scheme as AWS. We give you a client ID and secret. Your requests to Q should be signed using your secret token. Instructions and details are available on the [Q documentation site](http://q.aplo.me/docs).
 
 __If you run your own data API__
 
-My advice to you is to model your API client off of our [`q-client` API library](https://www.npmjs.com/package/q-client) and understand the the Affordable Care Act and how it handles insurance quoting.
+My advice to you is to model your API client off of our [`q-client` API library](https://www.npmjs.com/package/q-client) and have an understanding of the the Affordable Care Act and how it handles querying for search results.
 
 ## Contributing
 
-We welcome contributions. [See the contributing file](CONTRIBUTING.md). Here's the short version:
+I welcome contributions. [See the contributing file](CONTRIBUTING.md). Here's the short version:
 
 1. Create your own fork
 2. Always cut your own branches off of the `develop` branch
@@ -104,17 +103,17 @@ Coverage Web is licensed under the MIT License. You can [read the full license h
 - You may __use this code for commercial or non-commercial purposes__
 - You are __not required to publish your changes to the code__
 - __You do not hold the author or contributors liable for anything__
-- __You *must give credit* to the original author in some form__. I prefer a [link to my personal website](http://billpatrianakos.me) but simply leaving my name in the license file will suffice
+- __You *must give credit* to the original author in some form__. I prefer a [link to my personal website](http://billpatrianakos.me) but simply leaving my name in the license file will suffice. This project has been stolen and passed off as someone else's work in the past. Be sure you're using the original by checking the commit history, License, and `package.json` file for consistency
 
 ## Disclaimer
 
-Coverage works by default by making requests to an external API to get quotes and subsidy data. In order to run quotes you must either build your own quoting API or sign up for [Q, the quoting API](https://q.aploquote.com/docs). The data used to generate quotes is available for download for free from [Data.Healthcare.gov](http://data.healthcare.gov) and the formula for estimating insurance subsidies is also freely available by doing a quick Google search. Coverage has been built from the ground up and does not use code from any other project besides the open source libraries it depends on. __Remember: all data output from this software is 100% free and public knowledge! If you can download the Healthcare.gov data sets then you can make your own insurance plan finder.__
+Coverage works by default by making requests to an external API to get quotes and subsidy data. In order to run quotes you must either build your own quoting API or sign up for [Q, the quoting API](https://q.aploquote.com/docs). The data used to generate quotes is available for download for free from [Data.Healthcare.gov](http://data.healthcare.gov) and the formula for estimating insurance subsidies is also freely available by doing a quick Google search. Coverage has been built from the ground up and does not use code from any other project besides the 3rd party open source libraries it depends on. __Remember: all data output from this software is 100% free and public knowledge! If you can download the Healthcare.gov data sets then you can make your own insurance plan finder.__
 
 __To get API credentials__ open up a new issue on this repository and I'll set you up with a set of credentials. Remember, this is only if you choose to use my [Q API](https://q.aplqouote.com/docs). You're free to [download the required data sets for free from the federal government](https://data.healthcare.gov) and run your own quoting API.
 
 ## A message from Bill
 
-Please enjoy this open source helath insurnace quoting application. Please use it in your business, for your personal use, etc. Don't let the insurance companies and "quote engine/CRM" companies fuck you over. It's easy to run your own Obamacare/Affordable Care Act health insurance subsidy calculator and quote engine.
+Please enjoy this open source helath insurnace quoting application. Please use it in your business, for your personal use, or any other purpose. Don't let the insurance companies and "quote engine/CRM" companies fuck you over. It's easy to run your own Obamacare/Affordable Care Act health insurance subsidy calculator and quote engine.
 
 *Enjoy!*
 
