@@ -57,13 +57,14 @@ var QuotingContainer = React.createClass({
   },
   getQuotes: function(e) {
     e.preventDefault();
-    var self = this;
+    var self      = this,
+        csrfToken = document.getElementById('csrf-field').value;
 
-    request.post('/quotes/')
+    request.post('/quotes/?_csrf=' + csrfToken)
       .send(self.state.demographics)
       .end(function(err, res) {
         if (err || res.body.status !== 'ok') {
-          console.log(err); // TODO: Handle this error properly
+          console.log(err, '<--- Quoting.js 66'); // TODO: Handle this error properly
         } else {
           var state = self.state;
           console.log(res); // TODO: Remove all console.log statements
@@ -167,13 +168,18 @@ var QuotingContainer = React.createClass({
 // Render a dependent form
 var DependentForm = React.createClass({
   render: function() {
-    var dependentForms = [];
-    while (var i = 0; i <= this.props.children; i++) {
-      dependentForms.push(<Dependent number={i} key={i} />);
-    }
-
-    return {dependentForms}
+    return (
+      <div>Dependent</div>
+    );
   }
+  // render: function() {
+  //   var dependentForms = [];
+  //   while (var i = 0; i <= this.props.children; i++) {
+  //     dependentForms.push(<Dependent number={i} key={i} />);
+  //   }
+
+  //   return {dependentForms}
+  // }
 });
 
 
