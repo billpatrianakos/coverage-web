@@ -72,7 +72,7 @@ gulp.task('server', () => {
   server.start();
 
   // Reload the server on change
-  gulp.watch(['./gulpfile.js', './server/app.js', './server/{config,controllers,middleware,models}/**/*.js'], function() {
+  gulp.watch(['./gulpfile.js', './server/app.js', './server/{config,controllers,lib,middleware,models}/**/*.js'], function() {
     server.start.bind(server)()
   });
 });
