@@ -12,7 +12,9 @@ LoginController.route('/?')
   // -----------
   // Render login page
   .get(function(req, res, next) {
-    res.json({status: 'Login page'});
+    res.render('authentication/login', {
+      csrf: req.csrfToken()
+    });
   })
   // POST /login/
   // ------------
