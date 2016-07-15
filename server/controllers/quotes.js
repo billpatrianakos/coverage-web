@@ -16,17 +16,25 @@ QuotesController.route('/?')
   // ------------
   // Render quoting page
   .get(function(req, res, next) {
-    res.render('quotes/index', {});
+    console.log('Hello?');
+    res.render('quotes/index', {
+      csrf: req.csrfToken()
+    });
   })
   // POST /quotes/
   // ------------
   // Gets quotes
   .post(function(req, res, next) {
+    console.log('Hello?');
     quotes.getSubsidy('none', req.body.zip_code, req.body, function(err, results) {
-      if (err)
+      if (err) {
+        console.log(err);
         res.json({status: 'error', message: 'There was an error fetching quotes', details: err});
-      else
+      }
+      else {
+        console.log(results);
         res.json(JSON.parse(results));
+      }
     });
   });
 
