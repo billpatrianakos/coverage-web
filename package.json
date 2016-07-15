@@ -31,7 +31,7 @@
     "lodash": "^4.6.1",
     "morgan": "^1.7.0",
     "mysql": "^2.10.2",
-    "q-client": "^0.2.1",
+    "q-client": "^0.3.2",
     "superagent": "^1.8.3"
   },
   "devDependencies": {
