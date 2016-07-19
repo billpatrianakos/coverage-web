@@ -1,0 +1,25 @@
+{{!-- /signup/ view --}}
+<main class="container">
+  <div class="row">
+    <div class="col-6 push-3 signup-form">
+      <h2>Sign up</h2>
+      <form method="post" action="/signup">
+        <label>
+          <input type="email" name="email" placeholder="Email address" />
+        </label>
+
+        <label>
+          <input type="password" name="password" placeholder="Choose a password" />
+        </label>
+
+        <label>
+          <input type="password" name="password_confirmation" placeholder="Confirm password" />
+        </label>
+
+        <input type="hidden" name="_csrf" value="{{csrf}}" />
+
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+  </div>
+</main>
