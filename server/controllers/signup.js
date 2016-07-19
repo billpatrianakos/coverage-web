@@ -5,20 +5,24 @@
 'use strict';
 
 let express           = require('express'),
-    SignupController  = express.Router();
+    SignupController  = express.Router(),
+    bcrypt            = require('bcrypt'),
+    User              = require(__dirname + '/../models/user');
 
 SignupController.route('/?')
   // GET /signup/
   // -----------
   // Render login page
   .get(function(req, res, next) {
-    res.json({status: 'signup page'});
+    res.render('authentication/signup', {
+      csrf: req.csrfToken()
+    });
   })
   // POST /signup/
   // ------------
   // Logs the user in
   .post(function(req, res, next) {
-    res.json({status: 'Logged in'});
+    // bcrypt.
   });
 
 module.exports = SignupController;
