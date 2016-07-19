@@ -2,6 +2,44 @@
 // =====
 // Styling for all forms
 
+form {
+  label {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.5em;
+
+    &:first-child { margin-top: 1em; }
+
+    input {
+      cursor: pointer;
+      width: 100%;
+      padding: 0.5em;
+      .box-sizing(border-box);
+      font-size: 1.2em;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.5em 1em;
+    font-size: 1.2em;
+    font-weight: 300;
+    background: @purple;
+    .box-sizing(border-box);
+    border: 1px solid darken(@purple, 10%);
+
+    &:hover {
+      background: none;
+      color: @purple;
+      cursor: pointer;
+    }
+  }
+}
+
+.signup-form {
+  margin-top: 3em;
+}
+
 .form-sidebar {
   .box-sizing(border-box);
   padding: 1.5em;
