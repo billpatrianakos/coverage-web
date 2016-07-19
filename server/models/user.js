@@ -8,7 +8,7 @@ var Bookshelf = require('./database');
 
 require('./favorite');
 
-var User = Bookshelf.model.extend({
+var User = Bookshelf.Model.extend({
   tableName: 'users',
   favorites: function() {
     return this.hasMany('Favorite');

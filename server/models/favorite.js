@@ -6,7 +6,7 @@
 
 var Bookshelf = require('./database');
 
-var Favorite = Bookshelf.model.extend({
+var Favorite = Bookshelf.Model.extend({
   tableName: 'favorites',
   users: function() {
     return this.belongsTo('User');
