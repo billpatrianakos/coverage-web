@@ -20,7 +20,7 @@ var QuotingContainer = React.createClass({
       subsidy: null,
       demographics: {},
       spouse: false,
-      children: []
+      children: false
     };
   },
   // QuotingContainer#updateDemographics
@@ -77,9 +77,9 @@ var QuotingContainer = React.createClass({
   addDependent: function(e) {
     e.preventDefault();
     var state = this.state;
-    state.children = state.children ? state.children++ : 0;
+    state.children = state.children || [];
     this.setState(state);
-    console.log('addDependent ran');
+    console.log('addDependent ran', this.state.children);
   },
   updateChildAge: function(age, index) {
     var state = this.state;
@@ -89,6 +89,7 @@ var QuotingContainer = React.createClass({
     console.log('updateChildAge ran');
   },
   render: function() {
+    console.log(this.state.children.length, 'Children length')
     return (
       <div className="container">
         <div className="row-loose">
@@ -168,18 +169,18 @@ var QuotingContainer = React.createClass({
 // Render a dependent form
 var DependentForm = React.createClass({
   render: function() {
+    var children = this.props.children;
+
     return (
-      <div>Dependent</div>
+      <div>
+        {
+          children ? children.map(function(child, i) {
+            return <Dependent index={i} key={i} setChild={this.props.setChild} />
+          }.bind(this)) : null
+        }
+      </div>
     );
   }
-  // render: function() {
-  //   var dependentForms = [];
-  //   while (var i = 0; i <= this.props.children; i++) {
-  //     dependentForms.push(<Dependent number={i} key={i} />);
-  //   }
-
-  //   return {dependentForms}
-  // }
 });
 
 
@@ -187,9 +188,17 @@ var DependentForm = React.createClass({
 // ----------
 // Render a single dependent form
 var Dependent = React.createClass({
+  setChild: function(e) {
+    var age   = e.target.value,
+        index = this.props.index;
+
+    this.props.setChild(age, index);
+  },
   render: function() {
     return (
-      <div>Hello {this.props.number}</div>
+      <label>
+        <input name={'child-' + this.props.index} placeholder="Child's age" onChange={this.setChild} />
+      </label>
     );
   }
 });
