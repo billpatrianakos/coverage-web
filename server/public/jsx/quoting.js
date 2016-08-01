@@ -3,6 +3,8 @@
 // React components responsible for
 // getting quotes from form input.
 
+'use strict';
+
 var React     = require('react'),
     ReactDom  = require('react-dom'),
     request   = require('superagent'),
@@ -18,9 +20,11 @@ var QuotingContainer = React.createClass({
     return {
       plans: [],
       subsidy: null,
-      demographics: {},
+      demographics: {
+        dependents: {}
+      },
       spouse: false,
-      children: false
+      children: []
     };
   },
   // QuotingContainer#updateDemographics
@@ -45,28 +49,42 @@ var QuotingContainer = React.createClass({
   },
   updateSpouseAge: function(e) {
     var state = this.state;
-    state.demographics.spouse = {};
-    state.demographics.spouse.age = e.target.value;
+    if (!state.demographics.dependents.spouse) state.demographics.dependents.spouse = {};
+    state.demographics.dependents.spouse.age = e.target.value;
     this.setState(state);
   },
   updateSpouseTobacco: function(e) {
     var state = this.state;
     var smoker = +e.target.value ? true : false;
-    this.state.demographics.spouse.tobacco_use = smoker;
+    if (!state.demographics.dependents.spouse) state.demographics.dependents.spouse = {};
+    state.demographics.dependents.spouse.tobacco_use = smoker;
     this.setState(state);
   },
   getQuotes: function(e) {
     e.preventDefault();
     var self      = this,
-        csrfToken = document.getElementById('csrf-field').value;
+        csrfToken = document.getElementById('csrf-field').value,
+        state     = this.state;
+
+    // Update demographics if needed
+    // if (state.spouse) {
+    //   state.demographics.dependents.spouse = state.spouse;
+    // }
+
+    // Are there children?
+    if (state.children.length) {
+      state.children = state.children.filter(function(child) { return child.age !== null; });     // Filter out children with `null` ages
+      state.demographics.dependents.children = state.children; // Add away if demo.deps exists
+    }
+
+    console.log(state.demographics)
 
     request.post('/quotes/?_csrf=' + csrfToken)
-      .send(self.state.demographics)
+      .send(state.demographics)
       .end(function(err, res) {
         if (err || res.body.status !== 'ok') {
           console.log(err, '<--- Quoting.js 66'); // TODO: Handle this error properly
         } else {
-          var state = self.state;
           console.log(res); // TODO: Remove all console.log statements
           state.plans   = res.body.quotes;
           state.subsidy = res.body.subsidy;
@@ -77,19 +95,18 @@ var QuotingContainer = React.createClass({
   addDependent: function(e) {
     e.preventDefault();
     var state = this.state;
-    state.children = state.children || [];
+    state.children.push({age: null});
     this.setState(state);
     console.log('addDependent ran', this.state.children);
   },
   updateChildAge: function(age, index) {
     var state = this.state;
     this.state.dependents || {};
-    this.state.dependents.children[+index] = {age: age};
+    this.state.children[+index] = {age: age};
     this.setState(state);
-    console.log('updateChildAge ran');
+    console.log('updateChildAge ran', this.state.children);
   },
   render: function() {
-    console.log(this.state.children.length, 'Children length')
     return (
       <div className="container">
         <div className="row-loose">
@@ -131,26 +148,26 @@ var QuotingContainer = React.createClass({
                   <label>
                     <input  type="text" 
                             placeholder="Spouse's age" 
-                            onChange={this.updateSpouse} />
+                            onChange={this.updateSpouseAge} />
                   </label> : null}
                 {this.state.spouse ? 
                   <div className="checkbox-holder">
                     <span className="label">Does your spouse smoke?</span>
                     <label className="inline">
                       No <input type="radio" 
-                                name="tobacco_use" 
+                                name="spouse_tobacco_use" 
                                 value="0" 
                                 onChange={this.updateSpouseTobacco} />
                     </label>
                     <label className="inline">
                       Yes <input  type="radio" 
-                                  name="tobacco_use" 
+                                  name="spouse_tobacco_use" 
                                   value="1" 
                                   onChange={this.updateSpouseTobacco} />
                     </label>
                   </div> : null}
+                {this.state.children.length ? <DependentForm children={this.state.children} setChild={this.updateChildAge} /> : null}
                 {this.state.spouse ? null : <a href="#" onClick={this.addSpouse} className="btn add-dependents">Add Spouse</a> }
-                {this.state.children ? <DependentForm children={this.state.children} setChild={this.updateChildAge} /> : null}
                 <a href="#" className="btn add-dependents" onClick={this.addDependent}>Add Dependent</a>
                 <button className="quote-button" type="submit">Get Quotes</button>
               </form>
