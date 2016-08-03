@@ -6,9 +6,11 @@
 
 var Bookshelf = require('./database');
 
+require('./user');
+
 var Favorite = Bookshelf.Model.extend({
   tableName: 'favorites',
-  users: function() {
+  user: function() {
     return this.belongsTo('User');
   }
 });

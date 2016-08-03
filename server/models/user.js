@@ -7,11 +7,15 @@
 var Bookshelf = require('./database');
 
 require('./favorite');
+require('./subscriber');
 
 var User = Bookshelf.Model.extend({
   tableName: 'users',
   favorites: function() {
     return this.hasMany('Favorite');
+  },
+  profile: function() {
+    return this.hasOne('Subscriber');
   }
 });
 
