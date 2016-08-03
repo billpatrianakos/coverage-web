@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
       table.string('last_name');
       table.string('middle_name');
       table.boolean('tobacco_use');
+      table.integer('subscriber_id').references('id').inTable('subscribers');
       table.timestamps();
     })
   ]);
