@@ -67,7 +67,7 @@ If you go this route you'll just need to make sure that the data input/output is
 
 ## Tips, tricks, and advice
 
-__Remember__, Coverage is only an API *client*. It needs to query for plan results from an API that will respond with a JSON array of government provided health insurance plans. Please either ask for access to Q (which I host and may ask you to pay for access depending on your proposed use - it's a case by case basis) or use the [direct link to the data](http://data.healthcare.gov) to create your own simple quoting API. It's easy. Simply set up an endpoint that'll accept demographic information and return an array of plans based on the input. See [the official Q docs](http://q.aploquote.com/docs) as an example to model your API off of.
+__Remember__, Coverage is only an API *client*. It needs to query for plan results from an API that will respond with a JSON array of government provided health insurance plans. Please either ask for access to Q (which I host and may ask you to pay for access depending on your proposed use - it's a case by case basis) or use the [direct link to the data](http://data.healthcare.gov) to create your own simple quoting API. It's easy. Simply set up an endpoint that'll accept demographic information and return an array of plans based on the input. See [the official Q docs](http://q.aplo.me/docs) as an example to model your API off of.
 
 __If you use the Q API__
 
@@ -111,10 +111,3 @@ Coverage works by default by making requests to an external API to get quotes an
 
 __To get API credentials__ open up a new issue on this repository and I'll set you up with a set of credentials. Remember, this is only if you choose to use my [Q API](https://q.aplqouote.com/docs). You're free to [download the required data sets for free from the federal government](https://data.healthcare.gov) and run your own quoting API.
 
-## A message from Bill
-
-Please enjoy this open source helath insurnace quoting application. Please use it in your business, for your personal use, or any other purpose. Don't let the insurance companies and "quote engine/CRM" companies fuck you over. It's easy to run your own Obamacare/Affordable Care Act health insurance subsidy calculator and quote engine.
-
-*Enjoy!*
-
-- [Bill](http://billpatrianakos.me)
