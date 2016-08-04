@@ -263,7 +263,7 @@ var PlanInfo = React.createClass({
         </header>
         <div className="body">
           <p>
-            <strong>Deductible:</strong> ${this.props.planData.deductible}
+            <strong>Deductible:</strong> ${this.props.planData.deductible.toString().replace('$', '')}
           </p>
         </div>
       </div>
