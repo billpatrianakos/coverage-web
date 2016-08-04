@@ -18,7 +18,8 @@ QuotesController.route('/?')
   .get(function(req, res, next) {
     console.log('Hello?');
     res.render('quotes/index', {
-      csrf: req.csrfToken()
+      csrf: req.csrfToken(),
+      scripts: ['/js/components/quoting.js']
     });
   })
   // POST /quotes/
