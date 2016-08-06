@@ -11,6 +11,7 @@ require('./subscriber');
 
 var User = Bookshelf.Model.extend({
   tableName: 'users',
+  hasTimestamps: true,
   favorites: function() {
     return this.hasMany('Favorite');
   },

@@ -10,6 +10,7 @@ require('./user');
 
 var Favorite = Bookshelf.Model.extend({
   tableName: 'favorites',
+  hasTimestamps: true,
   user: function() {
     return this.belongsTo('User');
   }

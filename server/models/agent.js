@@ -11,6 +11,7 @@ require('./subscriber');
 
 var Agent = Bookshelf.Model.extend({
   tableName: 'agents',
+  hasTimestamps: true,
   leads: function() {
     this.hasMany('Subscriber');
   }

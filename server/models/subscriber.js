@@ -12,6 +12,7 @@ require('./agent');
 
 var Subscriber =  Bookshelf.Model.extend({
   tableName:'subscribers',
+  hasTimestamps: true,
   users: function() {
     return this.belongsTo('User');
   },
