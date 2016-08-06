@@ -15,14 +15,44 @@ SignupController.route('/?')
   // Render login page
   .get(function(req, res, next) {
     res.render('authentication/signup', {
-      csrf: req.csrfToken()
+      csrf: req.csrfToken(),
+      scripts: ['/js/signup.min.js']
     });
   })
   // POST /signup/
   // ------------
-  // Logs the user in
+  // Registers a new user
   .post(function(req, res, next) {
-    // bcrypt.
+    // Check if user exists in database
+    User
+      .where({ email: req.body.email })
+        .fetch()
+        .then(function(user) {
+          if (user) {
+            bcrypt.hash(req.body.password, 10, function(err, hash) {
+              if (err) return next(new Error('Could not hash password'));
+
+              // Create a new user
+              new User({
+                email:    req.body.email,
+                password: hash
+              })
+              .save()
+              .then(function(user) {
+                res.send('User created');
+              })
+              .catch(function(err) {
+                res.send('username or email already taken');
+              });
+            });
+          } else {
+            res.send('could not create new user');
+          }
+        })
+        .catch(function(err) {
+          console.log(err, 'FETCH ERROR');
+          res.send('Could not run fetch query');
+        });
   });
 
 module.exports = SignupController;
