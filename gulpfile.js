@@ -49,6 +49,11 @@ gulp.task('browserify', () => {
     .transform('babelify', {presets: ['es2015', 'react']})
     .bundle()
     .pipe(fs.createWriteStream('./server/public/js/scripts.min.js'));
+
+  browserify('./server/public/js/signup.js')
+    .transform('babelify', {presets: ['es2015', 'react']})
+    .bundle()
+    .pipe(fs.createWriteStream('./server/public/js/signup.min.js'));
 });
 
 
