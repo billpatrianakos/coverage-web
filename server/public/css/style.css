@@ -1082,6 +1082,9 @@ body > header nav ul li a:hover,
 body > header nav ul li a:visited:hover {
   color: #20CF69;
 }
+.hidden {
+  display: none;
+}
 form label {
   display: block;
   width: 100%;
@@ -1119,6 +1122,9 @@ form button:hover {
 }
 .signup-form {
   margin-top: 3em;
+}
+.signup-form.hidden {
+  display: none;
 }
 .form-sidebar {
   -ms-box-sizing: border-box;
