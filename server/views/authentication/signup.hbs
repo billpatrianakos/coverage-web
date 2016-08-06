@@ -1,8 +1,50 @@
 {{!-- /signup/ view --}}
 <main class="container">
+  <div class="row-loose user-type">
+    <div class="col-4 push-2 centered-text">
+      <div>
+        <label>
+          <h3>I am a consumer</h3>
+          <p class="sm">I plan to shop for health insurance plans online</p>
+          <input type="radio" name="user-type" value="consumer" />
+        </label>
+      </div>
+    </div>
+    <div class="col-4 push-2 centered-text">
+      <div class="user-type">
+        <label>
+          <h3>I am an insurance agent</h3>
+          <p class="sm">I plan to track leads and help consumers choose plans</p>
+          <input type="radio" name="user-type" value="agent" />
+        </label>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
-    <div class="col-6 push-3 signup-form">
-      <h2>Sign up</h2>
+    <div class="col-6 push-3 signup-form hidden" id="user-form">
+      <h2>Sign up as a consumer</h2>
+      <form method="post" action="/signup">
+        <label>
+          <input type="email" name="email" placeholder="Email address" />
+        </label>
+
+        <label>
+          <input type="password" name="password" placeholder="Choose a password" />
+        </label>
+
+        <label>
+          <input type="password" name="password_confirmation" placeholder="Confirm password" />
+        </label>
+
+        <input type="hidden" name="_csrf" value="{{csrf}}" />
+
+        <button type="submit">Sign up</button>
+      </form>
+    </div>
+
+    <div class="col-6 push-3 signup-form hidden" id="agent-form">
+      <h2>Sign up as an insurance agent</h2>
       <form method="post" action="/signup">
         <label>
           <input type="email" name="email" placeholder="Email address" />
