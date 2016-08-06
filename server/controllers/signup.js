@@ -24,35 +24,34 @@ SignupController.route('/?')
   // Registers a new user
   .post(function(req, res, next) {
     // Check if user exists in database
-    User
-      .where({ email: req.body.email })
-        .fetch()
-        .then(function(user) {
-          if (user) {
-            bcrypt.hash(req.body.password, 10, function(err, hash) {
-              if (err) return next(new Error('Could not hash password'));
+    User.where({ email: req.body.email })
+      .fetchAll()
+      .then(function(user) {
+        if (user) {
+          bcrypt.hash(req.body.password, 10, function(err, hash) {
+            if (err) return next(new Error('Could not hash password'));
 
-              // Create a new user
-              new User({
-                email:    req.body.email,
-                password: hash
-              })
-              .save()
-              .then(function(user) {
-                res.send('User created');
-              })
-              .catch(function(err) {
-                res.send('username or email already taken');
-              });
+            // Create a new user
+            new User({
+              email:    req.body.email,
+              password: hash
+            })
+            .save()
+            .then(function(user) {
+              res.send('User created');
+            })
+            .catch(function(err) {
+              res.send('username or email already taken');
             });
-          } else {
-            res.send('could not create new user');
-          }
-        })
-        .catch(function(err) {
-          console.log(err, 'FETCH ERROR');
-          res.send('Could not run fetch query');
-        });
+          });
+        } else {
+          res.send('could not create new user');
+        }
+      })
+      .catch(function(err) {
+        console.log(err, 'FETCH ERROR');
+        res.send('Could not run fetch query');
+      });
   });
 
 module.exports = SignupController;
