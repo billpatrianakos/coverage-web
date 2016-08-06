@@ -27,7 +27,7 @@ app.engine('hbs', exphbs(config.handlebars));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/views');
 
-    
+
 // Middleware
 // ----------
 // Insert + configure middleware based on environment
@@ -44,9 +44,10 @@ if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
   }));
 }
 app.use(session(config.sessions));                    // Configures sessions for current environment automatically
-app.use(csrf());                                      // Handle CSRF generation and checking
+
 app.use(bodyParser.urlencoded({ extended: true }));   // Parse post bodies as rich/deep JS objects
 app.use(bodyParser.json());                           // Accept and parse JSON request bodies
+app.use(csrf());                                      // Handle CSRF generation and checking
 
 
 // Routes
