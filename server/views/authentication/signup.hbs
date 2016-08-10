@@ -21,6 +21,16 @@
     </div>
   </div>
 
+  {{#if warning}}
+    <div class="row-loose">
+      <div class="col-12">
+        <div class="alert-box warning">
+          <p>{{warning}}</p>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
   <div class="row">
     <div class="col-6 push-3 signup-form hidden" id="user-form">
       <h2>Sign up as a consumer</h2>
