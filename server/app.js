@@ -17,6 +17,7 @@ let express     = require('express'),
     bodyParser  = require('body-parser'),
     csrf        = require('csurf'),
     session     = require('express-session'),
+    flash       = require('connect-flash'),
     RedisStore  = process.env.NODE_ENV === 'production' ? require('connect-redis')(session) : null;
 
 
@@ -44,7 +45,7 @@ if (_.includes(['development', 'test'], process.env.NODE_ENV)) {
   }));
 }
 app.use(session(config.sessions));                    // Configures sessions for current environment automatically
-
+app.use(flash());                                     // Support flash messaging
 app.use(bodyParser.urlencoded({ extended: true }));   // Parse post bodies as rich/deep JS objects
 app.use(bodyParser.json());                           // Accept and parse JSON request bodies
 app.use(csrf());                                      // Handle CSRF generation and checking
