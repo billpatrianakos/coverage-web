@@ -47,3 +47,4 @@ server/*.log
 # Build artifacts
 ##
 TODO.md
+server/public/js/*.min.js
