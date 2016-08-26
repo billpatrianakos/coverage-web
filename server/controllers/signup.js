@@ -6,7 +6,8 @@
 
 let express           = require('express'),
     SignupController  = express.Router(),
-    bcrypt            = require('bcrypt'),
+    Promise           = require('bluebird'),
+    bcrypt            = Promise.promisifyAll(require('bcrypt')),
     User              = require(__dirname + '/../models/user');
 
 SignupController.route('/?')
@@ -24,44 +25,32 @@ SignupController.route('/?')
   // ------------
   // Registers a new user
   .post(function(req, res, next) {
-    // Do usual form validation
-    if (req.body.password !== req.body.password_confirmation) {
+    if (req.body.password === req.body.password_confirmation) {
+      User.where({email: req.body.email}).fetch()
+        .then(function(user) {
+          if (user)
+            res.redirect('/login');
+          else
+            return user;
+        })
+        .then(function(user) {
+          return bcrypt.hash(req.body.password, 10);
+        })
+        .then(function(hash) {
+          return new User({
+            email: req.body.email,
+            password: hash
+          }).save();
+        })
+        .then(function(user) {
+          res.send('You have signed up');
+        })
+        .catch(function(error) {
+          return next(new Error('Fatal error: ' + error));
+        });
+    } else {
       req.flash('warning', 'The passwords you entered do not match');
       res.redirect('/signup');
-    } else {
-      // Check if user exists in database
-      User.where({ email: req.body.email })
-        .fetch()
-        .then(function(user) {
-          if (user) {
-            console.log(user);
-            req.flash('warning', 'Username or email address already taken');
-            console.log('Username or email already taken');
-            res.redirect('/signup');
-          } else {
-            // Hash passwod if user doesn't exist
-            bcrypt.hash(req.body.password, 10, function(err, hash) {
-              if (err) return next(new Error('Unable to hash password'));
-
-              new User({
-                email:    req.body.email,
-                password: hash
-              }).save()
-              .then(function(user) {
-                console.log(user);
-                res.send('New user created ' + user.get('email'));
-              })
-              .catch(function(err) {
-                console.log(err);
-                res.send('Could not create new user');
-              });
-            });
-          }
-        })
-        .catch(function(err) {
-          console.log(err, 'FETCH ERROR');
-          res.send('Could not run fetch query');
-        });
     }
   });
 

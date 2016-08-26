@@ -8,8 +8,8 @@ exports.up = function(knex, Promise) {
       table.string('middle_name');
       table.float('household_income');
       table.date('dob');
-      table.boolean('tobacco_use');
-      table.string('phone_number');
+      table.boolean('tobacco_use').defaultsTo(false);
+      table.integer('phone_number');
       table.integer('zip_code');
       table.boolean('is_free_agent');
       table.integer('user_id').references('id').inTable('users');

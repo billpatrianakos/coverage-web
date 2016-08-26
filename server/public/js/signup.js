@@ -25,7 +25,10 @@ let validate          = require('validate.js'),
           message: 'The password and confirmation do not match'
         }
       }
-    };
+    },
+    agentConstraints  = {
+      //
+    } 
 
 $('input[name="user-type"]').click(function() {
   $('.user-type').toggle();
@@ -36,20 +39,41 @@ $('input[name="user-type"]').click(function() {
 
 
 // Validate the signup form
+// ------------------------
+// Grabs the most recent signup form data
 $('#user-form form').submit(function(e) {
   e.preventDefault();
 
-  var inputs = {
-    email:                  $('input[name="email"]').val(),
+  // Run validate.js on the front-end
+  var validationErrors = validate({
+    email: $('input[name="email"]').val(),
     password:               $('input[name="password"]').val(),
     password_confirmation:  $('input[name="password_confirmation"]').val()
-  };
+  }, signupConstraints);
 
-  var validationErrors = validate(inputs, signupConstraints);
+  // Error displaying element
+  var $validationMessages = $('#front-end-errors');
 
+  // Check for validation errors and act accordingly
   if (!validationErrors) {
-    $(this).submit();
+    console.log(validationErrors);
+    $validationMessages.empty().hide();
   } else {
-    console.log(validationErrors)
+    validationErrors.forEach(function(error) {
+      console.log(validationErrors);
+      $validationMessages.toggle();
+
+      $validationMessages.append('<div class="alert-box warning"><p>' + validationError + '</p></div>');
+    });
   }
 });
+
+
+
+
+
+
+
+
+
+

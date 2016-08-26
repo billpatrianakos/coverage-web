@@ -21,6 +21,7 @@
   "homepage": "https://github.com/billpatrianakos/coverage-web#readme",
   "dependencies": {
     "bcrypt": "^0.8.7",
+    "bluebird": "^3.4.3",
     "body-parser": "^1.15.0",
     "bookshelf": "^0.9.2",
     "connect-flash": "^0.1.1",
