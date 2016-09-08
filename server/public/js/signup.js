@@ -6,7 +6,7 @@
 'use strict';
 
 // Require dependencies
-let validate          = require('validate.js'),
+var validate          = require('validate.js'),
     signupConstraints = {
       email: {
         email: {
@@ -28,7 +28,7 @@ let validate          = require('validate.js'),
     },
     agentConstraints  = {
       //
-    } 
+    };
 
 $('input[name="user-type"]').click(function() {
   $('.user-type').toggle();
@@ -41,12 +41,12 @@ $('input[name="user-type"]').click(function() {
 // Validate the signup form
 // ------------------------
 // Grabs the most recent signup form data
-$('#user-form form').submit(function(e) {
+$('#user-form button').click(function(e) {
   e.preventDefault();
 
   // Run validate.js on the front-end
   var validationErrors = validate({
-    email: $('input[name="email"]').val(),
+    email:                  $('input[name="email"]').val(),
     password:               $('input[name="password"]').val(),
     password_confirmation:  $('input[name="password_confirmation"]').val()
   }, signupConstraints);
@@ -56,8 +56,9 @@ $('#user-form form').submit(function(e) {
 
   // Check for validation errors and act accordingly
   if (!validationErrors) {
-    console.log(validationErrors);
-    $validationMessages.empty().hide();
+    // console.log(validationErrors);
+    // $validationMessages.empty().hide();
+    $('#user-form form').submit();
   } else {
     validationErrors.forEach(function(error) {
       console.log(validationErrors);
