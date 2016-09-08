@@ -25,11 +25,6 @@ SignupController.route('/?')
   // ------------
   // Registers a new user
   .post(function(req, res, next) {
-    // 1. Check for password matching
-    // 2. Check if user already exists
-    // 3. Hash the password
-    // 4. Create a new user
-
     var body = req.body;
 
     if (body.password === body.password_confirmation) {
@@ -51,46 +46,6 @@ SignupController.route('/?')
       req.flash('warning', ['The passwords you entered do not match']);
       res.redirect('/signup');
     }
-
-
-
-
-    // if (req.body.password === req.body.password_confirmation) {
-    //   User.where({email: req.body.email}).fetch()
-    //     .then(function(user) {
-    //       if (user) {
-    //         req.flash('warning', ['The username you chose has already been taken.']);
-    //         return res.redirect('/signup');
-    //       }
-    //       else {
-    //         return user;
-    //       }
-    //     })
-    //     .then(function(user) {
-    //       bcrypt.hash(req.body.password, 10, function(err, hash) {
-    //         if (err) return next(new Error('Unable to generate password. ' + err));
-
-    //         return new User({
-    //           email: req.body.email,
-    //           password: hash
-    //         })
-    //         .save()
-    //         .then(function(user) {
-    //           res.send('You signed up');
-    //         })
-    //         .catch(function(err) {
-    //           req.flash('warning', ['There was an error creating your account.', err]);
-    //           res.redirect('/signup');
-    //         });
-    //       });
-    //     })
-    //     .catch(function(error) {
-    //       return next(new Error('Fatal error: ' + error));
-    //     });
-    // } else {
-    //   req.flash('warning', ['The passwords you entered do not match']);
-    //   res.redirect('/signup');
-    // }
   });
 
 module.exports = SignupController;
