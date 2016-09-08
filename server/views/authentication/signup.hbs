@@ -22,13 +22,15 @@
   </div>
 
   {{#if warning}}
-    <div class="row-loose">
-      <div class="col-12">
-        <div class="alert-box warning">
-          <p>{{warning}}</p>
+    {{#each warning}}
+      <div class="row-loose">
+        <div class="col-12">
+          <div class="alert-box warning">
+            <p>{{warning}}</p>
+          </div>
         </div>
       </div>
-    </div>
+    {{/each}}
   {{/if}}
 
   <div class="row">
