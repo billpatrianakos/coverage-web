@@ -84,6 +84,7 @@ var QuotingContainer = React.createClass({
       .end(function(err, res) {
         if (err || res.body.status !== 'ok') {
           console.log(err, '<--- Quoting.js 66'); // TODO: Handle this error properly
+          alert('You must have valid API credentials to view quotes');
         } else {
           console.log(res); // TODO: Remove all console.log statements
           state.plans   = res.body.quotes;
